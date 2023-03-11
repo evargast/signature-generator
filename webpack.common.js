@@ -3,10 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-const createStyledComponentsTransformer =
-    require("typescript-plugin-styled-components").default;
-const styledComponentsTransformer = createStyledComponentsTransformer();
-
 module.exports = {
     entry: "./src/components/index.tsx",
     target: "web",
@@ -29,11 +25,6 @@ module.exports = {
                 test: /\.tsx?$/,
                 loader: "ts-loader",
                 exclude: /node_modules/,
-                options: {
-                    getCustomTransformers: () => ({
-                        before: [styledComponentsTransformer],
-                    }),
-                },
             },
             {
                 enforce: "pre",
@@ -65,9 +56,7 @@ module.exports = {
     ],
     devServer: {
         port: 1234,
-        stats: "errors-only",
         hot: true,
-        writeToDisk: true,
     },
 
     performance: {
