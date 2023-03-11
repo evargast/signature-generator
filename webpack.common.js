@@ -15,6 +15,7 @@ module.exports = {
         modules: ["src", "node_modules"],
         alias: {
             components: path.resolve(__dirname, "src/components"),
+            providers: path.resolve(__dirname, "src/providers"),
             // Add aliases here if needed -->  `alias: path.resolve(__dirname, "src/alias-path"),`
         },
         extensions: [".tsx", ".ts", ".js", ".jsx", ".svg", ".css", ".json"],
