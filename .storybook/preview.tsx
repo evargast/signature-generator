@@ -1,16 +1,19 @@
 import { addDecorator, addParameters } from "@storybook/react";
 
 import { Provider, lightTheme } from "@adobe/react-spectrum";
+import { SignatureProvider } from "../src/providers/SignatureProvider";
 import React from "react";
 
 addParameters({
     viewMode: "story",
 });
 
-addDecorator(storyFn => {
+addDecorator(Story => {
     return (
         <Provider theme={lightTheme} colorScheme={"light"}>
-            {storyFn()}
+            <SignatureProvider>
+                <Story />
+            </SignatureProvider>
         </Provider>
     );
 });
