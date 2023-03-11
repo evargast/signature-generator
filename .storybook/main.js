@@ -12,7 +12,7 @@ const webpackResolve = {
 
 module.exports = {
     stories: ["../src/**/*.story.tsx"],
-    addons: ["@storybook/addon-postcss"],
+    addons: ["@storybook/addon-postcss", "@storybook/addon-actions"],
     webpackFinal: async config => {
         config.devServer = { stats: "errors-only" };
 

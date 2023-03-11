@@ -89,6 +89,7 @@
     },
     "dependencies": {
         "@adobe/react-spectrum": "^3.24.1",
+        "@storybook/addon-actions": "^6.5.16",
         "file-loader": "^6.2.0",
         "react": "^17.0.2",
         "react-dom": "^17.0.2"
