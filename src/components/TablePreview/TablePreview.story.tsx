@@ -10,7 +10,7 @@ import React, { ComponentProps, ReactElement } from "react";
 import TablePreview from "./TablePreview";
 
 export default {
-    title: "TSX/TablePreview",
+    title: "TSX/SignatureHTMLComponent",
     component: TablePreview,
 };
 
@@ -22,6 +22,6 @@ const TablePreviewStory: Story = (
 };
 
 // Story specific props are passed here
-const Enabled = TablePreviewStory.bind({});
+const HtmlTable = TablePreviewStory.bind({});
 
-export { Enabled };
+export { HtmlTable };
