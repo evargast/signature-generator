@@ -8,59 +8,59 @@ import React, { FC } from "react";
 interface Props {
     defaultIsBold: boolean;
     defaultIsItalics: boolean;
+    defaultSelectedKeys: (string | number)[];
 }
 
-const ActionGroupButtonComponent: FC<Props> = ({ defaultIsBold, defaultIsItalics }) => {
+const ActionGroupButtonComponent: FC<Props> = ({ defaultIsBold, defaultIsItalics, defaultSelectedKeys }) => {
     const buttonStatus = {
         isBold: defaultIsBold,
         isItalics: defaultIsItalics,
+        selectedKeys: defaultSelectedKeys,
     };
 
-    /**
-     *
-     * buttonStatus.isBold === true ==> ['bold']
-     * buttonStatus.isItalics === true ==> ['italics']
-     * lost dos son true ==> ['bold', 'italics']
-     *
-     */
+    const multiButtonHandler = (keys: "all" | Set<string | number>) => {
+        buttonStatus.selectedKeys = [...keys];
+        console.log(buttonStatus.selectedKeys);
 
-    const onActionHandler = (key: string | number) => {
-        switch (key) {
-            case "bold":
-                console.log("Bold button pressed.");
-                buttonStatus.isBold = !buttonStatus.isBold;
-                console.log(buttonStatus);
-                break;
-
-            case "italics":
-                console.log("Italics button pressed.");
-                buttonStatus.isItalics = !buttonStatus.isItalics;
-                console.log(buttonStatus);
-                break;
-
-            default:
-                break;
+        if (buttonStatus.selectedKeys.length === 0) {
+            buttonStatus.isBold = false;
+            buttonStatus.isItalics = false;
+            console.log(buttonStatus);
+            return;
         }
-    };
 
-    /**
-     * Controlled ActionGroup
-     * 
-       <ActionGroup
-        selectedKeys={selected}
-        onSelectionChange={setSelected}
-      >
-     */
+        if (buttonStatus.selectedKeys.length === 2) {
+            buttonStatus.isBold = true;
+            buttonStatus.isItalics = true;
+            console.log(buttonStatus);
+            return;
+        }
+
+        for (const str of buttonStatus.selectedKeys) {
+            if (str === "bold") {
+                buttonStatus.isBold = true;
+            } else {
+                buttonStatus.isBold = false;
+            }
+            if (str === "italics") {
+                buttonStatus.isItalics = true;
+            } else {
+                buttonStatus.isItalics = false;
+            }
+        }
+
+        console.log(buttonStatus);
+    };
 
     return (
         <div>
             <ActionGroup
-                onAction={onActionHandler}
                 isEmphasized
                 density="compact"
                 isQuiet
                 selectionMode="multiple"
-                selectedKeys={["bold"]}
+                selectedKeys={buttonStatus.selectedKeys}
+                onSelectionChange={multiButtonHandler}
             >
                 <Item key="bold">
                     <TagBold />
