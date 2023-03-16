@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import type { Selection } from "@adobe/react-spectrum";
 import { ActionGroup, Item } from "@adobe/react-spectrum";
 import { Text } from "@adobe/react-spectrum";
 import TagBold from "@spectrum-icons/workflow/TagBold";
@@ -8,49 +9,27 @@ import React, { FC } from "react";
 interface Props {
     defaultIsBold: boolean;
     defaultIsItalics: boolean;
-    defaultSelectedKeys: (string | number)[];
 }
 
-const ActionGroupButtonComponent: FC<Props> = ({ defaultIsBold, defaultIsItalics, defaultSelectedKeys }) => {
+const ActionGroupButtonComponent: FC<Props> = ({ defaultIsBold, defaultIsItalics }) => {
     const buttonStatus = {
         isBold: defaultIsBold,
         isItalics: defaultIsItalics,
-        selectedKeys: defaultSelectedKeys,
     };
 
-    const multiButtonHandler = (keys: "all" | Set<string | number>) => {
-        buttonStatus.selectedKeys = [...keys];
-        console.log(buttonStatus.selectedKeys);
+    const [selected, setSelected] = React.useState<Selection>(new Set([]));
 
-        if (buttonStatus.selectedKeys.length === 0) {
-            buttonStatus.isBold = false;
-            buttonStatus.isItalics = false;
-            console.log(buttonStatus);
-            return;
-        }
-
-        if (buttonStatus.selectedKeys.length === 2) {
-            buttonStatus.isBold = true;
-            buttonStatus.isItalics = true;
-            console.log(buttonStatus);
-            return;
-        }
-
-        for (const str of buttonStatus.selectedKeys) {
-            if (str === "bold") {
-                buttonStatus.isBold = true;
-            } else {
-                buttonStatus.isBold = false;
+    React.useEffect(() => {
+        selected.forEach((element: string) => {
+            if (element === "bold") {
+                buttonStatus.isBold = !buttonStatus.isBold;
             }
-            if (str === "italics") {
-                buttonStatus.isItalics = true;
-            } else {
-                buttonStatus.isItalics = false;
+            if (element === "italics") {
+                buttonStatus.isItalics = !buttonStatus.isItalics;
             }
-        }
-
+        });
         console.log(buttonStatus);
-    };
+    }, [selected]);
 
     return (
         <div>
@@ -59,8 +38,8 @@ const ActionGroupButtonComponent: FC<Props> = ({ defaultIsBold, defaultIsItalics
                 density="compact"
                 isQuiet
                 selectionMode="multiple"
-                selectedKeys={buttonStatus.selectedKeys}
-                onSelectionChange={multiButtonHandler}
+                selectedKeys={selected}
+                onSelectionChange={setSelected}
             >
                 <Item key="bold">
                     <TagBold />
