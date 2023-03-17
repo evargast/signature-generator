@@ -3,8 +3,6 @@ import React, { createContext, FC, useContext, useState } from "react";
 interface SignatureContextProps {
     imgUrl?: string;
     setImgUrl: (inputString: string) => void;
-    defaultIsBold: boolean;
-    defaultIsItalics: boolean;
 }
 
 const SignatureContext = createContext<SignatureContextProps>({} as SignatureContextProps);
