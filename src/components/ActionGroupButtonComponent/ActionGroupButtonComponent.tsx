@@ -1,35 +1,31 @@
-/* eslint-disable no-console */
-import type { Selection } from "@adobe/react-spectrum";
 import { ActionGroup, Item } from "@adobe/react-spectrum";
 import { Text } from "@adobe/react-spectrum";
+import type { Selection } from "@react-types/shared";
 import TagBold from "@spectrum-icons/workflow/TagBold";
 import TagItalic from "@spectrum-icons/workflow/TagItalic";
 import React, { FC } from "react";
 
 interface Props {
-    defaultIsBold: boolean;
-    defaultIsItalics: boolean;
+    isBold?: boolean;
+    isItalics?: boolean;
 }
 
-const ActionGroupButtonComponent: FC<Props> = ({ defaultIsBold, defaultIsItalics }) => {
-    const buttonStatus = {
-        isBold: defaultIsBold,
-        isItalics: defaultIsItalics,
-    };
+const ActionGroupButtonComponent: FC<Props> = ({ isBold, isItalics }) => {
+    const [selected, setSelected] = React.useState<Selection>(() => {
+        const initialValue: string[] = [];
 
-    const [selected, setSelected] = React.useState<Selection>(new Set([]));
+        if (isBold) {
+            initialValue.push("bold");
+        }
 
-    React.useEffect(() => {
-        selected.forEach((element: string) => {
-            if (element === "bold") {
-                buttonStatus.isBold = !buttonStatus.isBold;
-            }
-            if (element === "italics") {
-                buttonStatus.isItalics = !buttonStatus.isItalics;
-            }
-        });
-        console.log(buttonStatus);
-    }, [selected]);
+        if (isItalics) {
+            initialValue.push("italics");
+        }
+        // eslint-disable-next-line no-console
+        console.log(initialValue);
+
+        return new Set(initialValue);
+    });
 
     return (
         <div>

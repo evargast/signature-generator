@@ -16,34 +16,31 @@ export default {
 };
 
 const ActionGroupButtonComponentStory: ComponentStory<typeof ActionGroupButtonComponent> = (args): ReactElement => {
-    // Shared props may be passed here
     return <ActionGroupButtonComponent {...args} />;
 };
 
-// Story specific props are passed here
-
 const BoldOffItalicsOff = ActionGroupButtonComponentStory.bind({});
 BoldOffItalicsOff.args = {
-    defaultIsBold: false,
-    defaultIsItalics: false,
+    isBold: false,
+    isItalics: false,
 };
 
 const BoldOnItalicsOff = ActionGroupButtonComponentStory.bind({});
 BoldOnItalicsOff.args = {
-    defaultIsBold: true,
-    defaultIsItalics: false,
+    isBold: true,
+    isItalics: false,
 };
 
 const BoldOffItalicsOn = ActionGroupButtonComponentStory.bind({});
 BoldOffItalicsOn.args = {
-    defaultIsBold: false,
-    defaultIsItalics: true,
+    isBold: false,
+    isItalics: true,
 };
 
 const BoldOnItalicsOn = ActionGroupButtonComponentStory.bind({});
 BoldOnItalicsOn.args = {
-    defaultIsBold: true,
-    defaultIsItalics: true,
+    isBold: true,
+    isItalics: true,
 };
 
 export { BoldOffItalicsOff, BoldOnItalicsOff, BoldOffItalicsOn, BoldOnItalicsOn };
