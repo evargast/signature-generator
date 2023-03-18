@@ -1,11 +1,11 @@
 import { ComponentStory } from "@storybook/react";
 import React, { ReactElement } from "react";
 
-import { ActionGroupButtonComponent } from "./ActionGroupButtonComponent";
+import { TextStyleOptions } from "./TextStyleOptions";
 
 export default {
-    title: "TSX/ActionGroupButtonComponent",
-    component: ActionGroupButtonComponent,
+    title: "TSX/TextStyleOptions",
+    component: TextStyleOptions,
     argTypes: {
         onClick: {
             control: {
@@ -15,29 +15,29 @@ export default {
     },
 };
 
-const ActionGroupButtonComponentStory: ComponentStory<typeof ActionGroupButtonComponent> = (args): ReactElement => {
-    return <ActionGroupButtonComponent {...args} />;
+const TextStyleOptionsStory: ComponentStory<typeof TextStyleOptions> = (args): ReactElement => {
+    return <TextStyleOptions {...args} />;
 };
 
-const BoldOffItalicsOff = ActionGroupButtonComponentStory.bind({});
+const BoldOffItalicsOff = TextStyleOptionsStory.bind({});
 BoldOffItalicsOff.args = {
     isBold: false,
     isItalics: false,
 };
 
-const BoldOnItalicsOff = ActionGroupButtonComponentStory.bind({});
+const BoldOnItalicsOff = TextStyleOptionsStory.bind({});
 BoldOnItalicsOff.args = {
     isBold: true,
     isItalics: false,
 };
 
-const BoldOffItalicsOn = ActionGroupButtonComponentStory.bind({});
+const BoldOffItalicsOn = TextStyleOptionsStory.bind({});
 BoldOffItalicsOn.args = {
     isBold: false,
     isItalics: true,
 };
 
-const BoldOnItalicsOn = ActionGroupButtonComponentStory.bind({});
+const BoldOnItalicsOn = TextStyleOptionsStory.bind({});
 BoldOnItalicsOn.args = {
     isBold: true,
     isItalics: true,

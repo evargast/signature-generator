@@ -10,7 +10,7 @@ interface Props {
     isItalics?: boolean;
 }
 
-const ActionGroupButtonComponent: FC<Props> = ({ isBold, isItalics }) => {
+const TextStyleOptions: FC<Props> = ({ isBold, isItalics }) => {
     const [selected, setSelected] = React.useState<Selection>(() => {
         const initialValue: string[] = [];
 
@@ -51,4 +51,4 @@ const ActionGroupButtonComponent: FC<Props> = ({ isBold, isItalics }) => {
     );
 };
 
-export { ActionGroupButtonComponent };
+export { TextStyleOptions };
