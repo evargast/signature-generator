@@ -30,13 +30,13 @@ const Enabled = UsernameInputStory.bind({});
 
 Enabled.args = {
     text: "Hello",
-    disabled: false,
+    // disabled: false,
 };
 
 const Disabled = UsernameInputStory.bind({});
 Disabled.args = {
     text: "World",
-    disabled: true,
+    // disabled: true,
 };
 
 export { Enabled, Disabled };

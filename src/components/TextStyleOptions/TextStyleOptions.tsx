@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ActionGroup, Item } from "@adobe/react-spectrum";
 import { Text } from "@adobe/react-spectrum";
 import type { Selection } from "@react-types/shared";
@@ -8,9 +9,10 @@ import React, { FC } from "react";
 interface Props {
     isBold?: boolean;
     isItalics?: boolean;
+    onChange?: (selectedKeys: (string | number)[]) => void; //works there is no predefined onAction event.
 }
 
-const TextStyleOptions: FC<Props> = ({ isBold, isItalics }) => {
+const TextStyleOptions: FC<Props> = ({ isBold, isItalics, onChange }) => {
     const [selected, setSelected] = React.useState<Selection>(() => {
         const initialValue: string[] = [];
 
@@ -27,6 +29,26 @@ const TextStyleOptions: FC<Props> = ({ isBold, isItalics }) => {
         return new Set(initialValue);
     });
 
+    // function printValues(): void {
+    //     console.log("Is bold:" + isBold + "is Italics" + isItalics);
+    // } //printing but with the past cycle state.
+
+    // const onChange = (Array.from(selected)) =>{
+
+    // }
+
+    const handleSelectionChange = (selectedKeys: Selection) => {
+        //if the optional onChange function if it is defined.
+        setSelected(selectedKeys); //setting the state for when onSelectionChange is triggered.
+        const values: (string | number)[] = Array.from(selectedKeys);
+        values.push();
+        if (onChange) {
+            onChange(values);
+        }
+    };
+
+    // function onChange(array: string[]): void {}
+
     return (
         <div>
             <ActionGroup
@@ -35,7 +57,8 @@ const TextStyleOptions: FC<Props> = ({ isBold, isItalics }) => {
                 isQuiet
                 selectionMode="multiple"
                 selectedKeys={selected}
-                onSelectionChange={setSelected}
+                onSelectionChange={handleSelectionChange}
+                // onAction={printValues}
             >
                 <Item key="bold">
                     <TagBold />
