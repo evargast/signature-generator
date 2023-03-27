@@ -23,31 +23,18 @@ const TextStyleOptions: FC<Props> = ({ isBold, isItalics, onChange }) => {
         if (isItalics) {
             initialValue.push("italics");
         }
-        // eslint-disable-next-line no-console
         console.log(initialValue);
 
         return new Set(initialValue);
     });
 
-    // function printValues(): void {
-    //     console.log("Is bold:" + isBold + "is Italics" + isItalics);
-    // } //printing but with the past cycle state.
-
-    // const onChange = (Array.from(selected)) =>{
-
-    // }
-
     const handleSelectionChange = (selectedKeys: Selection) => {
-        //if the optional onChange function if it is defined.
-        setSelected(selectedKeys); //setting the state for when onSelectionChange is triggered.
-        const values: (string | number)[] = Array.from(selectedKeys);
-        values.push();
+        setSelected(selectedKeys);
         if (onChange) {
+            const values: (string | number)[] = Array.from(selectedKeys);
             onChange(values);
         }
     };
-
-    // function onChange(array: string[]): void {}
 
     return (
         <div>
@@ -58,7 +45,6 @@ const TextStyleOptions: FC<Props> = ({ isBold, isItalics, onChange }) => {
                 selectionMode="multiple"
                 selectedKeys={selected}
                 onSelectionChange={handleSelectionChange}
-                // onAction={printValues}
             >
                 <Item key="bold">
                     <TagBold />
