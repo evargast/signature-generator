@@ -6,13 +6,13 @@ import TagBold from "@spectrum-icons/workflow/TagBold";
 import TagItalic from "@spectrum-icons/workflow/TagItalic";
 import React, { FC } from "react";
 
-interface Props {
+export interface TextStyleProps {
     isBold?: boolean;
     isItalics?: boolean;
-    onChange?: (selectedKeys: (string | number)[]) => void; //works there is no predefined onAction event.
+    onChange?: (selectedKeys: (string | number)[]) => void;
 }
 
-const TextStyleOptions: FC<Props> = ({ isBold, isItalics, onChange }) => {
+const TextStyleOptions: FC<TextStyleProps> = ({ isBold, isItalics, onChange }) => {
     const [selected, setSelected] = React.useState<Selection>(() => {
         const initialValue: string[] = [];
 

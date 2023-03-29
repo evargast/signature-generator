@@ -1,16 +1,13 @@
-/**
- *  Component Story Format (CSF) is now encouraged.
- *  More info here: https://storybook.js.org/docs/react/api/csf
- */
-
 import { ComponentStory } from "@storybook/react";
 import React, { ReactElement } from "react";
 
+import { TextStyleOptions } from "./../TextStyleOptions";
 import { UsernameInput } from "./UsernameInput";
 
 export default {
     title: "TSX/UsernameInput",
     component: UsernameInput,
+    TextStyleOptions,
     argTypes: {
         onClick: {
             control: {
@@ -21,22 +18,72 @@ export default {
 };
 
 const UsernameInputStory: ComponentStory<typeof UsernameInput> = (args): ReactElement => {
-    // Shared props may be passed here
     return <UsernameInput {...args} />;
 };
 
-// Story specific props are passed here
-const Enabled = UsernameInputStory.bind({});
-
-Enabled.args = {
-    text: "Hello",
-    // disabled: false,
+const EmptyTextfieldNoButtons = UsernameInputStory.bind({});
+EmptyTextfieldNoButtons.args = {
+    text: "",
+    isBold: false,
+    isItalics: false,
 };
 
-const Disabled = UsernameInputStory.bind({});
-Disabled.args = {
-    text: "World",
-    // disabled: true,
+const EmptyTextfieldBoldOnItalicsOff = UsernameInputStory.bind({});
+EmptyTextfieldBoldOnItalicsOff.args = {
+    text: "",
+    isBold: true,
+    isItalics: false,
 };
 
-export { Enabled, Disabled };
+const EmptyTextfieldBoldOffItalicsOn = UsernameInputStory.bind({});
+EmptyTextfieldBoldOffItalicsOn.args = {
+    text: "",
+    isBold: false,
+    isItalics: true,
+};
+
+const EmptyTextfieldBoldOnItalicsOn = UsernameInputStory.bind({});
+EmptyTextfieldBoldOnItalicsOn.args = {
+    text: "",
+    isBold: true,
+    isItalics: true,
+};
+
+const FilledTextfieldBoldOffItalicsOff = UsernameInputStory.bind({});
+FilledTextfieldBoldOffItalicsOff.args = {
+    text: "BoldOffItalicsOff",
+    isBold: false,
+    isItalics: false,
+};
+
+const FilledTextfieldBoldOnItalicsOff = UsernameInputStory.bind({});
+FilledTextfieldBoldOnItalicsOff.args = {
+    text: "BoldOnItalicsOff",
+    isBold: true,
+    isItalics: false,
+};
+
+const FilledTextfieldBoldOffItalicsOn = UsernameInputStory.bind({});
+FilledTextfieldBoldOffItalicsOn.args = {
+    text: "BoldOffItalicsOn",
+    isBold: false,
+    isItalics: true,
+};
+
+const FilledTextfieldBoldOnItalicsOn = UsernameInputStory.bind({});
+FilledTextfieldBoldOnItalicsOn.args = {
+    text: "BoldOnItalicsOn",
+    isBold: true,
+    isItalics: true,
+};
+
+export {
+    EmptyTextfieldNoButtons,
+    EmptyTextfieldBoldOnItalicsOff,
+    EmptyTextfieldBoldOffItalicsOn,
+    EmptyTextfieldBoldOnItalicsOn,
+    FilledTextfieldBoldOffItalicsOff,
+    FilledTextfieldBoldOnItalicsOff,
+    FilledTextfieldBoldOffItalicsOn,
+    FilledTextfieldBoldOnItalicsOn,
+};

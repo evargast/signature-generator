@@ -65,7 +65,7 @@ All of this within the complex useState hook.
 
 Very important to return the expected type, in this case Selection expects a Set so a new Set is made with the elements of the local array that have been pushed.
 
-At this point the setSelected is called every time onSelectionChange prop is called this updating the values of the array. And being tracked by the selectedKeys prop of the Action Group component. With this impementation we have controlled by having the selectedKeys prop having the selected interface values.
+At this point the setSelected is called every time onSelectionChange prop is called this updating the values of the array. And being tracked by the selectedKeys prop of the Action Group component. With this implementation we have controlled by having the selectedKeys prop having the selected interface values.
 
 ## Storybook setup
 
@@ -81,7 +81,7 @@ BoldOffItalicsOff.args = {
 };
 ```
 
-Once the 'story' scenario has been binded we need to also 'export' it as to make it accessible on the storybook, this is one by passing the created story to the export at the end of the file, e.g.:
+Once the 'story' scenario has been bounded we need to also 'export' it as to make it accessible on the storybook, this is one by passing the created story to the export at the end of the file, e.g.:
 
 ```typescript
 export { BoldOffItalicsOff, BoldOnItalicsOff, BoldOffItalicsOn, BoldOnItalicsOn };

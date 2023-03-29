@@ -69,3 +69,65 @@ We can the pass this function from the parent to the new child onChange prop as 
 ```
 
 With this implementation we have the desired result for the ticket at hand.
+
+## Storybook Implementation
+
+Now that the component looks good it time to make the pertinent stories and scenarios for testing.
+
+Having 3 variables with 2 states each we have a total of 8 combinations.
+
+For the textfield value in the storybook we pass in the defined 'text' variable from the interface to the FC and then to the variable was passed to the useState as the initial value. with this we could then edit the text variable int the storybook with no problem.
+
+With the isBold and isItalics variables from the child component we had to "drill" the variables from the parent component in order to be able to access them.
+
+The first change to the code that was made was to export the child interface so that it could be imported from the parent component.(also the name was change for convenience) This is done with the reserved keyword _export_ as such:
+
+```typescript
+export interface TextStyleProps {
+    isBold?: boolean;
+    isItalics?: boolean;
+    onChange?: (selectedKeys: (string | number)[]) => void;
+}
+```
+
+Once the interface of the child has been modified then from the parent component we can pull the child interface similar to inheritance in other high level languages using the reserved keyword _extends_ in the interface as such:
+
+```typescript
+import { TextStyleOptions, TextStyleProps } from "./../TextStyleOptions";
+
+interface UsernameInputProps extends TextStyleProps {
+    text?: string;
+}
+```
+
+As seen in the example above the props TextStyleProps is explicitly imported and then extended in the parent props _UsernameInputProps_ and now there is access to the child props in the storybook.
+
+### Drilling the Child Props
+
+In order to _drill_ the child props we modify the parent component JSX by adding the desired props and setting them to themselves as such:
+
+```typescript
+<TextStyleOptions onChange={handleButtonChange} isBold={isBold} isItalics={isItalics} />
+```
+
+Within the storybook we can now manipulate both the text prop from the parent and the isBold and isItalics of the child in each story as such (e.g.):
+
+```typescript
+const FilledTextfieldBoldOffItalicsOff = UsernameInputStory.bind({});
+FilledTextfieldBoldOffItalicsOff.args = {
+    text: "BoldOffItalicsOff",
+    isBold: false,
+    isItalics: false,
+};
+```
+
+And at the end we _export_ the stories as such:
+
+```typescript
+export {
+    FilledTextfieldBoldOffItalicsOff,
+    ...
+};
+```
+
+This for each story.
