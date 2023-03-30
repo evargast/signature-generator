@@ -16,7 +16,7 @@ const TablePreview: FC<Props> = ({}) => {
             </tr>
             <tr>
                 <td>Company</td>
-                <td>LinkedIn</td>la
+                <td>LinkedIn</td>
             </tr>
         </table>
     );
