@@ -32,7 +32,7 @@ const App: FC = () => {
         <ProviderV3 theme={lightTheme} colorScheme={"light"}>
             <SignatureProvider>
                 <View paddingTop="size-400">
-                    <h1 className="App">Welcome to React Spectrum!</h1>
+                    <h1 className="App">Welcome to Signature Generator!</h1>
                 </View>
 
                 <Grid
