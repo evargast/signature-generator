@@ -4,9 +4,9 @@ interface Props {}
 
 const TablePreview: FC<Props> = ({}) => {
     return (
-        <table border="1">
+        <table style={{ border: 1 }}>
             <tr>
-                <td rowspan="3">Image Taking 3 cells</td>
+                <td rowSpan={3}>Image Taking 3 cells</td>
                 <td>Name</td>
                 <td>Phone Number</td>
             </tr>
@@ -16,7 +16,7 @@ const TablePreview: FC<Props> = ({}) => {
             </tr>
             <tr>
                 <td>Company</td>
-                <td>LinkedIn</td>
+                <td>LinkedIn</td>la
             </tr>
         </table>
     );
