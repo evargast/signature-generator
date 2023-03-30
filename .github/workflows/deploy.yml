@@ -14,7 +14,8 @@ on:
 
                 - name: Configure Node 🔎
                   uses: actions/setup-node@v1
-                  with: node-version:'16.19.1'
+                  with:
+                      node-version: "16.19.1"
 
                 - name: Install 💻
                   run: yarn install
@@ -25,5 +26,6 @@ on:
                 - name: Deploy 🚀
                   uses: JamesIves/github-pages-deploy-action@v4
                   with:
+                      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                       folder: dist
                       branch: gh-pages
