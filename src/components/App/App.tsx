@@ -51,7 +51,7 @@ const App: FC = () => {
                 </Grid>
                 <Flex marginX="size-300" justifyContent="center">
                     {/* eslint-disable-next-line no-console */}
-                    <ColorPicker handleColorChange={console.log} />
+                    <ColorPicker handleColorChange={color => console.log(color.toString("hex"))} />
                 </Flex>
             </SignatureProvider>
         </ProviderV3>

@@ -1,5 +1,5 @@
-import { ActionButton, Dialog, DialogTrigger } from "@adobe/react-spectrum";
-import { ColorArea } from "@react-spectrum/color";
+import { ActionButton, Dialog, DialogTrigger, Flex } from "@adobe/react-spectrum";
+import { ColorArea, ColorField } from "@react-spectrum/color";
 import { parseColor } from "@react-stately/color";
 import { Color } from "@react-types/color";
 import TextColor from "@spectrum-icons/workflow/TextColor";
@@ -10,7 +10,7 @@ interface Props {
     defaultColor?: string;
 }
 
-const ColorPicker: FC<Props> = ({ handleColorChange, defaultColor = "hsl(50, 100%, 50%)" }) => {
+const ColorPicker: FC<Props> = ({ handleColorChange, defaultColor = "#EDFA16" }) => {
     const [currentValue, setCurrentValue] = useState<Color>(parseColor(defaultColor));
     const [finalValue, setFinalValue] = useState<Color>(parseColor(defaultColor));
 
@@ -26,15 +26,16 @@ const ColorPicker: FC<Props> = ({ handleColorChange, defaultColor = "hsl(50, 100
                 <TextColor />
             </ActionButton>
             <Dialog width="100px">
-                <ColorArea
-                    minWidth="100%"
-                    gridRow={"1/-1"}
-                    gridColumn={"1/-1"}
-                    justifySelf={"center"}
-                    value={currentValue}
-                    onChange={setCurrentValue}
-                    onChangeEnd={setFinalValue}
-                />
+                <Flex gridRow="1/-1" gridColumn="1/-1" direction="column">
+                    <ColorField label="Select a color" value={currentValue} width="100%" />
+                    <ColorArea
+                        minWidth="100%"
+                        justifySelf={"center"}
+                        value={currentValue}
+                        onChange={setCurrentValue}
+                        onChangeEnd={setFinalValue}
+                    />
+                </Flex>
             </Dialog>
         </DialogTrigger>
     );
