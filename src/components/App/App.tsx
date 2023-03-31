@@ -1,5 +1,6 @@
-import { Grid, lightTheme, Provider as ProviderV3, repeat, View } from "@adobe/react-spectrum";
+import { Flex, Grid, lightTheme, Provider as ProviderV3, repeat, View } from "@adobe/react-spectrum";
 import { BackgroundColor } from "@react-types/shared";
+import { ColorPicker } from "components/ColorPicker";
 import { SignatureProvider } from "providers/SignatureProvider";
 import React, { FC } from "react";
 
@@ -48,6 +49,10 @@ const App: FC = () => {
                         <View colorVersion={5} key={color?.toString()} backgroundColor={color} />
                     ))}
                 </Grid>
+                <Flex marginX="size-300" justifyContent="center">
+                    {/* eslint-disable-next-line no-console */}
+                    <ColorPicker handleColorChange={console.log} />
+                </Flex>
             </SignatureProvider>
         </ProviderV3>
     );

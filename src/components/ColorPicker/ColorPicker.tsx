@@ -7,7 +7,7 @@ import React, { FC, useState } from "react";
 
 interface Props {
     handleColorChange: (color: Color) => void;
-    defaultColor: string;
+    defaultColor?: string;
 }
 
 const ColorPicker: FC<Props> = ({ handleColorChange, defaultColor = "hsl(50, 100%, 50%)" }) => {
@@ -25,9 +25,10 @@ const ColorPicker: FC<Props> = ({ handleColorChange, defaultColor = "hsl(50, 100
             <ActionButton>
                 <TextColor />
             </ActionButton>
-            <Dialog>
+            <Dialog width="100px">
                 <ColorArea
-                    minWidth="400px"
+                    minWidth="100%"
+                    gridRow={"1/-1"}
                     gridColumn={"1/-1"}
                     justifySelf={"center"}
                     value={currentValue}
