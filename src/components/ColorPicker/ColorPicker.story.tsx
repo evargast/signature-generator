@@ -26,8 +26,11 @@ const ColorPickerStory: ComponentStory<typeof ColorPicker> = (args): ReactElemen
 };
 
 // Story specific props are passed here
-const Enabled = ColorPickerStory.bind({});
+const Basic = ColorPickerStory.bind({});
 
-Enabled.args = {};
+Basic.args = {
+    // eslint-disable-next-line no-console
+    handleColorChange: console.log,
+};
 
-export { Enabled };
+export { Basic };

@@ -1,31 +1,39 @@
-import { ActionButton, Content, Dialog, DialogTrigger, Divider, Heading, Text } from "@adobe/react-spectrum";
+import { ActionButton, Dialog, DialogTrigger } from "@adobe/react-spectrum";
 import { ColorArea } from "@react-spectrum/color";
 import { parseColor } from "@react-stately/color";
+import { Color } from "@react-types/color";
 import TextColor from "@spectrum-icons/workflow/TextColor";
 import React, { FC, useState } from "react";
 
 interface Props {
+    handleColorChange: (color: Color) => void;
     defaultColor: string;
 }
 
-const ColorPicker: FC<Props> = ({ defaultColor = "hsl(50, 100%, 50%)" }) => {
-    const [currentValue, setCurrentValue] = useState(parseColor(defaultColor));
-    const [finalValue, setFinalValue] = useState(parseColor(defaultColor));
+const ColorPicker: FC<Props> = ({ handleColorChange, defaultColor = "hsl(50, 100%, 50%)" }) => {
+    const [currentValue, setCurrentValue] = useState<Color>(parseColor(defaultColor));
+    const [finalValue, setFinalValue] = useState<Color>(parseColor(defaultColor));
+
+    const handleDialogClose = (isOpen: boolean) => {
+        if (!isOpen) {
+            handleColorChange(finalValue);
+        }
+    };
 
     return (
-        <DialogTrigger type="popover">
+        <DialogTrigger type="popover" onOpenChange={handleDialogClose}>
             <ActionButton>
                 <TextColor />
             </ActionButton>
             <Dialog>
-                <Heading>Popover</Heading>
-                <Divider />
-                <Content>
-                    <ColorArea value={currentValue} onChange={setCurrentValue} onChangeEnd={setFinalValue} />
-                    <pre>Current value: {currentValue.toString("hsl")}</pre>
-                    <pre>Final value: {finalValue.toString("hsl")}</pre>
-                    <Text>Chose a color</Text>
-                </Content>
+                <ColorArea
+                    minWidth="400px"
+                    gridColumn={"1/-1"}
+                    justifySelf={"center"}
+                    value={currentValue}
+                    onChange={setCurrentValue}
+                    onChangeEnd={setFinalValue}
+                />
             </Dialog>
         </DialogTrigger>
     );
