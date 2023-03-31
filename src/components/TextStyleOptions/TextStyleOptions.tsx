@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ActionGroup, Item } from "@adobe/react-spectrum";
 import { Text } from "@adobe/react-spectrum";
 import type { Selection } from "@react-types/shared";
@@ -5,12 +6,13 @@ import TagBold from "@spectrum-icons/workflow/TagBold";
 import TagItalic from "@spectrum-icons/workflow/TagItalic";
 import React, { FC } from "react";
 
-interface Props {
+export interface TextStyleProps {
     isBold?: boolean;
     isItalics?: boolean;
+    onChange?: (selectedKeys: (string | number)[]) => void;
 }
 
-const TextStyleOptions: FC<Props> = ({ isBold, isItalics }) => {
+const TextStyleOptions: FC<TextStyleProps> = ({ isBold, isItalics, onChange }) => {
     const [selected, setSelected] = React.useState<Selection>(() => {
         const initialValue: string[] = [];
 
@@ -21,11 +23,18 @@ const TextStyleOptions: FC<Props> = ({ isBold, isItalics }) => {
         if (isItalics) {
             initialValue.push("italics");
         }
-        // eslint-disable-next-line no-console
         console.log(initialValue);
 
         return new Set(initialValue);
     });
+
+    const handleSelectionChange = (selectedKeys: Selection) => {
+        setSelected(selectedKeys);
+        if (onChange) {
+            const values: (string | number)[] = Array.from(selectedKeys);
+            onChange(values);
+        }
+    };
 
     return (
         <div>
@@ -35,7 +44,7 @@ const TextStyleOptions: FC<Props> = ({ isBold, isItalics }) => {
                 isQuiet
                 selectionMode="multiple"
                 selectedKeys={selected}
-                onSelectionChange={setSelected}
+                onSelectionChange={handleSelectionChange}
             >
                 <Item key="bold">
                     <TagBold />
