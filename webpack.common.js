@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
     entry: "./src/components/index.tsx",
@@ -13,11 +14,7 @@ module.exports = {
     },
     resolve: {
         modules: ["src", "node_modules"],
-        alias: {
-            components: path.resolve(__dirname, "src/components"),
-            providers: path.resolve(__dirname, "src/providers"),
-            // Add aliases here if needed -->  `alias: path.resolve(__dirname, "src/alias-path"),`
-        },
+        plugins: [new TsconfigPathsPlugin()],
         extensions: [".tsx", ".ts", ".js", ".jsx", ".svg", ".css", ".json"],
     },
     module: {
