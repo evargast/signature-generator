@@ -20,7 +20,8 @@
         "target": "es5",
         "paths": {
             "components/*": ["components/*"],
-            "providers/*": ["providers/*"]
+            "providers/*": ["providers/*"],
+            "hooks/*": ["hooks/*"]
         }
     },
     "include": ["src"]
