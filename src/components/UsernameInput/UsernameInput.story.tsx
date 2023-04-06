@@ -26,6 +26,7 @@ EmptyTextfieldNoButtons.args = {
     text: "",
     isBold: false,
     isItalics: false,
+    label: "Name",
 };
 
 const EmptyTextfieldBoldOnItalicsOff = UsernameInputStory.bind({});
@@ -33,6 +34,7 @@ EmptyTextfieldBoldOnItalicsOff.args = {
     text: "",
     isBold: true,
     isItalics: false,
+    label: "Name",
 };
 
 const EmptyTextfieldBoldOffItalicsOn = UsernameInputStory.bind({});
@@ -40,6 +42,7 @@ EmptyTextfieldBoldOffItalicsOn.args = {
     text: "",
     isBold: false,
     isItalics: true,
+    label: "Name",
 };
 
 const EmptyTextfieldBoldOnItalicsOn = UsernameInputStory.bind({});
@@ -47,6 +50,7 @@ EmptyTextfieldBoldOnItalicsOn.args = {
     text: "",
     isBold: true,
     isItalics: true,
+    label: "Name",
 };
 
 const FilledTextfieldBoldOffItalicsOff = UsernameInputStory.bind({});
@@ -54,6 +58,7 @@ FilledTextfieldBoldOffItalicsOff.args = {
     text: "BoldOffItalicsOff",
     isBold: false,
     isItalics: false,
+    label: "Name",
 };
 
 const FilledTextfieldBoldOnItalicsOff = UsernameInputStory.bind({});
@@ -61,6 +66,7 @@ FilledTextfieldBoldOnItalicsOff.args = {
     text: "BoldOnItalicsOff",
     isBold: true,
     isItalics: false,
+    label: "Name",
 };
 
 const FilledTextfieldBoldOffItalicsOn = UsernameInputStory.bind({});
@@ -68,6 +74,7 @@ FilledTextfieldBoldOffItalicsOn.args = {
     text: "BoldOffItalicsOn",
     isBold: false,
     isItalics: true,
+    label: "Name",
 };
 
 const FilledTextfieldBoldOnItalicsOn = UsernameInputStory.bind({});
@@ -75,6 +82,7 @@ FilledTextfieldBoldOnItalicsOn.args = {
     text: "BoldOnItalicsOn",
     isBold: true,
     isItalics: true,
+    label: "Name",
 };
 
 export {

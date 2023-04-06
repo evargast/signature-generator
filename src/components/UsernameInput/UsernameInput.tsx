@@ -6,9 +6,10 @@ import { TextStyleOptions, TextStyleProps } from "./../TextStyleOptions";
 
 interface UsernameInputProps extends TextStyleProps {
     text?: string;
+    label: string;
 }
 
-const UsernameInput: FC<UsernameInputProps> = ({ text, isBold, isItalics }) => {
+const UsernameInput: FC<UsernameInputProps> = ({ text, isBold, isItalics, label }) => {
     const [nameValue, setNameValue] = React.useState(text);
 
     const handleButtonChange = (values: (string | number)[]) => {
@@ -18,7 +19,7 @@ const UsernameInput: FC<UsernameInputProps> = ({ text, isBold, isItalics }) => {
 
     return (
         <Flex gap="size-200" alignItems="end" direction="row">
-            <TextField label="Name" onChange={setNameValue} value={nameValue} />
+            <TextField label={label} onChange={setNameValue} value={nameValue} />
             <TextStyleOptions onChange={handleButtonChange} isBold={isBold} isItalics={isItalics} />
         </Flex>
     );
