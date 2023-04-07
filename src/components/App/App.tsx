@@ -1,59 +1,34 @@
-import { Flex, Grid, lightTheme, Provider as ProviderV3, repeat, View } from "@adobe/react-spectrum";
-import { BackgroundColor } from "@react-types/shared";
+import { Flex, lightTheme, Provider as ProviderV3 } from "@adobe/react-spectrum";
 import { ColorPicker } from "components/ColorPicker";
 import { Layout } from "components/Layout";
+import TablePreview from "components/TablePreview";
+import { UsernameInput } from "components/UsernameInput";
 import { SignatureProvider } from "providers/SignatureProvider";
 import React, { FC } from "react";
 
 import "./App.css";
 
 const App: FC = () => {
-    const baseColors = [
-        "celery",
-        "chartreuse",
-        "yellow",
-        "magenta",
-        "fuchsia",
-        "purple",
-        "indigo",
-        "seafoam",
-        "red",
-        "orange",
-        "green",
-        "blue",
-    ];
-
-    const colors: BackgroundColor["5"][] = [];
-    for (const color of baseColors) {
-        for (let i = 4; i <= 7; i++) {
-            colors.push(`${color}-${i}00` as BackgroundColor["5"]);
-        }
-    }
-
     return (
         <ProviderV3 theme={lightTheme} colorScheme={"light"}>
             <SignatureProvider>
                 <Layout>
-                    <View paddingTop="size-400">
-                        <h1 className="App">Welcome to Signature Generator!</h1>
-                    </View>
-
-                    <Grid
-                        columns={repeat("auto-fit", "size-800")}
-                        autoRows="size-800"
+                    <Flex
+                        marginX="size-300"
+                        alignItems="start"
+                        direction="column"
                         justifyContent="center"
-                        gap="size-100"
-                        marginX="size-200"
-                        marginTop="size-300"
-                        marginBottom="size-400"
+                        gap={"size-200"}
                     >
-                        {colors.map(color => (
-                            <View colorVersion={5} key={color?.toString()} backgroundColor={color} />
-                        ))}
-                    </Grid>
-                    <Flex marginX="size-300" justifyContent="center">
+                        <UsernameInput label={"Name"} />
+                        <UsernameInput label={"Title"} />
+                        <UsernameInput label={"Company"} />
+                        <UsernameInput label={"Email"} />
+                        <UsernameInput label={"Phone number"} />
+                        <UsernameInput label={"LinkedIn"} />
                         {/* eslint-disable-next-line no-console */}
                         <ColorPicker handleColorChange={color => console.log(color.toString("hex"))} />
+                        <TablePreview />
                     </Flex>
                 </Layout>
             </SignatureProvider>
