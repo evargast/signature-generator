@@ -1,3 +1,4 @@
+import { localStorageKeys, useLocalStorageState } from "hooks/useLocalStorage";
 import React, { createContext, FC, useContext, useState } from "react";
 
 interface InputElementOptions {
@@ -9,6 +10,7 @@ interface InputElementOptions {
 const createSignatureProviderState = () => {
     const [imgUrl, setImgUrl] = useState<string>();
     const [name, setName] = useState<InputElementOptions>({ textValue: "", isBold: false, isItalics: false });
+    const [isDarkMode, setIsDarkMode] = useLocalStorageState(localStorageKeys.isDarkMode, false);
 
     /**
      * Partial<> makes the types inside optional,
@@ -29,6 +31,8 @@ const createSignatureProviderState = () => {
         imgUrl,
         setImgUrl,
         updateName,
+        isDarkMode,
+        setIsDarkMode,
     };
 };
 

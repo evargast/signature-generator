@@ -53,7 +53,7 @@ module.exports = {
         }),
     ],
     devServer: {
-        port: 1234,
+        port: 1235,
         hot: true,
     },
 

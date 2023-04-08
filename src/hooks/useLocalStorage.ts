@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
  * Synopsis example: useLocalStorage(localStorageKeys['keyIWantToUse']);
  */
 export const localStorageKeys = {
-    myKey: "my-local-storage-key",
+    isDarkMode: "signature-generator-dark-mode",
 };
 
 /**
@@ -15,22 +15,18 @@ export const localStorageKeys = {
  * @param options Object containing two functions, one to serialize and one to deserialize.
  * @returns Returns the value and the function to set a value.
  */
-function useLocalStorageState(
-    key: string,
-    defaultValue: any = "",
-    { serialize = JSON.stringify, deserialize = JSON.parse } = {},
-): [any, React.Dispatch<any>] {
+function useLocalStorageState(key: string, defaultValue: any = ""): [any, React.Dispatch<any>] {
     const [state, setState] = useState(() => {
         const valueInLocalStorage = window.localStorage.getItem(key);
         if (valueInLocalStorage) {
-            return deserialize(valueInLocalStorage);
+            return JSON.parse(valueInLocalStorage);
         }
         return typeof defaultValue === "function" ? defaultValue() : defaultValue;
     });
 
     useEffect(() => {
-        window.localStorage.setItem(key, serialize(state));
-    }, [key, state, serialize]);
+        window.localStorage.setItem(key, JSON.stringify(state));
+    }, [key, state]);
 
     return [state, setState];
 }
