@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * Object used access to the local storage keys. To be used within useLocalStorage()
@@ -28,14 +28,7 @@ function useLocalStorageState(
         return typeof defaultValue === "function" ? defaultValue() : defaultValue;
     });
 
-    const prevKeyRef = useRef(key);
-
     useEffect(() => {
-        const prevKey = prevKeyRef.current;
-        if (prevKey !== key) {
-            window.localStorage.removeItem(prevKey);
-        }
-        prevKeyRef.current = key;
         window.localStorage.setItem(key, serialize(state));
     }, [key, state, serialize]);
 
