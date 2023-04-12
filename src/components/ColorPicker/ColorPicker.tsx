@@ -6,7 +6,7 @@ import TextColor from "@spectrum-icons/workflow/TextColor";
 import React, { FC, useState } from "react";
 
 interface Props {
-    handleColorChange: (color: Color) => void;
+    handleColorChange?: (color: Color) => void;
     defaultColor?: string;
 }
 

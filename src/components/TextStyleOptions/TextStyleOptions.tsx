@@ -5,6 +5,7 @@ import { Flex, ToggleButton } from "@adobe/react-spectrum";
 // import type { Selection } from "@react-types/shared";
 import TagBold from "@spectrum-icons/workflow/TagBold";
 import TagItalic from "@spectrum-icons/workflow/TagItalic";
+import { ColorPicker } from "components/ColorPicker";
 import React, { FC } from "react";
 
 export interface TextStyleProps {
@@ -49,6 +50,7 @@ const TextStyleOptions: FC<TextStyleProps> = ({ isBold, isItalics }) => {
             <ToggleButton isQuiet aria-label="ItalicsButton" isSelected={selectedItalics} onChange={setSelectedItalics}>
                 <TagItalic />
             </ToggleButton>
+            <ColorPicker />
 
             {/* <div>
                 <ActionGroup
