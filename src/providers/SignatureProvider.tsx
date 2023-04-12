@@ -36,7 +36,7 @@ const createSignatureProviderState = () => {
     };
 };
 
-type SignatureContextProps = ReturnType<typeof createSignatureProviderState>;
+export type SignatureContextProps = ReturnType<typeof createSignatureProviderState>;
 
 const SignatureContext = createContext<SignatureContextProps>({} as SignatureContextProps);
 const SignatureProvider: FC = ({ children }) => {
