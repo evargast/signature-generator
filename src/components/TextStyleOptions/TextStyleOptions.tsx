@@ -50,7 +50,7 @@ const TextStyleOptions: FC<TextStyleProps> = ({ isBold, isItalics }) => {
             <ToggleButton isQuiet aria-label="ItalicsButton" isSelected={selectedItalics} onChange={setSelectedItalics}>
                 <TagItalic />
             </ToggleButton>
-            <ColorPicker />
+            <ColorPicker handleColorChange={color => console.log(color.toString("hex"))} />
 
             {/* <div>
                 <ActionGroup
