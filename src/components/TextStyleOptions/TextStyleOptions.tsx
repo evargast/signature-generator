@@ -1,8 +1,5 @@
 /* eslint-disable no-console */
-// import { ActionGroup, Flex, Item, ToggleButton } from "@adobe/react-spectrum";
-// import { Text } from "@adobe/react-spectrum";
 import { Flex, ToggleButton } from "@adobe/react-spectrum";
-// import type { Selection } from "@react-types/shared";
 import TagBold from "@spectrum-icons/workflow/TagBold";
 import TagItalic from "@spectrum-icons/workflow/TagItalic";
 import { ColorPicker } from "components/ColorPicker";
@@ -14,64 +11,55 @@ export interface TextStyleProps {
     onChange?: (options: { isBold?: boolean; isItalics?: boolean }) => void;
 }
 
-// const TextStyleOptions: FC<TextStyleProps> = ({ isBold, isItalics, onChange }) => { //original
-const TextStyleOptions: FC<TextStyleProps> = ({ isBold, isItalics }) => {
-    // const [selected, setSelected] = React.useState<Selection>(() => {
-    //     const initialValue: string[] = [];
+const TextStyleOptions: FC<TextStyleProps> = ({ isBold, isItalics, onChange }) => {
+    const [selectedBold, setSelectedBold] = React.useState<boolean | undefined>(isBold);
+    const [selectedItalics, setSelectedItalics] = React.useState<boolean | undefined>(isItalics);
 
-    //     if (isBold) {
-    //         initialValue.push("bold");
-    //     }
+    const handleBoldChange = (value: boolean) => {
+        setSelectedBold(value);
+        isBold = value;
+        if (onChange) {
+            onChange({
+                isBold: value,
+                isItalics: selectedItalics,
+            });
+            console.log(`isBoldPropValue: ${isBold}`);
+        }
+    };
 
-    //     if (isItalics) {
-    //         initialValue.push("italics");
-    //     }
-    //     console.log(initialValue);
+    const handleItalicsChange = (value: boolean) => {
+        setSelectedItalics(value);
+        isItalics = value;
 
-    //     return new Set(initialValue);
-    // });
+        if (onChange) {
+            onChange({
+                isBold: selectedBold,
+                isItalics: value,
+            });
+            console.log(`isItalicsPropValue: ${isItalics}`);
+        }
+    };
 
-    const [selectedBold, setSelectedBold] = React.useState(isBold);
-    const [selectedItalics, setSelectedItalics] = React.useState(isItalics);
-
-    // const handleSelectionChange = (selectedKeys: Selection) => {
-    //     setSelected(selectedKeys);
-    //     if (onChange) {
-    //         const values: (string | number)[] = Array.from(selectedKeys);
-    //         onChange(values);
-    //     }
-    // };
+    React.useEffect(() => {
+        isBold = selectedBold;
+        isItalics = selectedItalics;
+        console.log(`isBold: ${isBold} and isItalics:${isItalics}`);
+    }, [selectedBold, selectedItalics]);
 
     return (
         <Flex direction="row">
-            <ToggleButton isQuiet aria-label="BoldButton" isSelected={selectedBold} onChange={setSelectedBold}>
+            <ToggleButton isQuiet aria-label="BoldButton" isSelected={selectedBold} onChange={handleBoldChange}>
                 <TagBold />
             </ToggleButton>
-            <ToggleButton isQuiet aria-label="ItalicsButton" isSelected={selectedItalics} onChange={setSelectedItalics}>
+            <ToggleButton
+                isQuiet
+                aria-label="ItalicsButton"
+                isSelected={selectedItalics}
+                onChange={handleItalicsChange}
+            >
                 <TagItalic />
             </ToggleButton>
             <ColorPicker handleColorChange={color => console.log(color.toString("hex"))} />
-
-            {/* <div>
-                <ActionGroup
-                    isEmphasized
-                    density="compact"
-                    isQuiet
-                    selectionMode="multiple"
-                    selectedKeys={selected}
-                    onSelectionChange={handleSelectionChange}
-                >
-                    <Item key="bold">
-                        <TagBold />
-                        <Text>Bold</Text>
-                    </Item>
-
-                    <Item key="italics">
-                        <TagItalic />
-                        <Text>Italic</Text>
-                    </Item>
-                </ActionGroup>
-            </div> */}
         </Flex>
     );
 };

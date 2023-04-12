@@ -12,9 +12,9 @@ interface UsernameInputProps extends TextStyleProps {
 const UsernameInput: FC<UsernameInputProps> = ({ text, isBold, isItalics, label }) => {
     const [nameValue, setNameValue] = React.useState(text);
 
-    const handleButtonChange = (values: (string | number)[]) => {
+    const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean } | undefined) => {
         // eslint-disable-next-line no-console
-        console.log(values + " " + text);
+        console.log(options); //output printing nicely.
     };
 
     return (
