@@ -20,14 +20,36 @@ const ColorPicker: FC<Props> = ({ handleColorChange, defaultColor = "#EDFA16" })
         }
     };
 
+    const manuallyUpdateColors = (color: Color | null) => {
+        if (color !== null) {
+            setCurrentValue(color);
+            setFinalValue(color);
+        }
+    };
+
+    const onInputHandler = (event: React.FormEvent<HTMLInputElement>) => {
+        const value = (event.target as HTMLInputElement).value;
+
+        // it's a complete hex input
+        if (value.length === 7) {
+            manuallyUpdateColors(parseColor(value));
+        }
+    };
+
     return (
         <DialogTrigger type="popover" onOpenChange={handleDialogClose}>
-            <ActionButton>
+            <ActionButton isQuiet>
                 <TextColor />
             </ActionButton>
             <Dialog width="100px">
                 <Flex gridRow="1/-1" gridColumn="1/-1" direction="column">
-                    <ColorField label="Select a color" value={currentValue} width="100%" />
+                    <ColorField
+                        label="Select a color"
+                        value={currentValue}
+                        onChange={manuallyUpdateColors}
+                        onInput={onInputHandler}
+                        width="100%"
+                    />
                     <ColorArea
                         minWidth="100%"
                         justifySelf={"center"}

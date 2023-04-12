@@ -21,11 +21,6 @@ const componentGenerator = {
         },
         {
             type: "pretty-add",
-            path: "src/components/{{name}}/{{name}}.test.tsx",
-            templateFile: "templates/test.hbs",
-        },
-        {
-            type: "pretty-add",
             path: "src/components/{{name}}/{{name}}.story.tsx",
             templateFile: "templates/tsx-story.hbs",
         },
