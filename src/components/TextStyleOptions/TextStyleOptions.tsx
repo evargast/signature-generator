@@ -1,62 +1,53 @@
 /* eslint-disable no-console */
-import { ActionGroup, Item } from "@adobe/react-spectrum";
-import { Text } from "@adobe/react-spectrum";
-import type { Selection } from "@react-types/shared";
+import { Flex, ToggleButton } from "@adobe/react-spectrum";
 import TagBold from "@spectrum-icons/workflow/TagBold";
 import TagItalic from "@spectrum-icons/workflow/TagItalic";
-import React, { FC } from "react";
+import { ColorPicker } from "components/ColorPicker";
+import React, { FC, useState } from "react";
 
 export interface TextStyleProps {
     isBold?: boolean;
     isItalics?: boolean;
-    onChange?: (selectedKeys: (string | number)[]) => void;
+    onChange?: (options: { isBold?: boolean; isItalics?: boolean }) => void;
 }
 
 const TextStyleOptions: FC<TextStyleProps> = ({ isBold, isItalics, onChange }) => {
-    const [selected, setSelected] = React.useState<Selection>(() => {
-        const initialValue: string[] = [];
+    const [selectedBold, setSelectedBold] = useState<boolean>(Boolean(isBold));
+    const [selectedItalics, setSelectedItalics] = useState<boolean>(Boolean(isItalics));
 
-        if (isBold) {
-            initialValue.push("bold");
-        }
-
-        if (isItalics) {
-            initialValue.push("italics");
-        }
-        console.log(initialValue);
-
-        return new Set(initialValue);
-    });
-
-    const handleSelectionChange = (selectedKeys: Selection) => {
-        setSelected(selectedKeys);
+    const handleButtonChange = (valueBold: boolean, valueItalics: boolean) => {
+        setSelectedBold(valueBold);
+        setSelectedItalics(valueItalics);
         if (onChange) {
-            const values: (string | number)[] = Array.from(selectedKeys);
-            onChange(values);
+            onChange({
+                isBold: valueBold,
+                isItalics: valueItalics,
+            });
         }
     };
 
     return (
-        <div>
-            <ActionGroup
-                isEmphasized
-                density="compact"
+        <Flex direction="row" gap="size-50">
+            <ToggleButton
                 isQuiet
-                selectionMode="multiple"
-                selectedKeys={selected}
-                onSelectionChange={handleSelectionChange}
+                isEmphasized
+                aria-label="BoldButton"
+                isSelected={selectedBold}
+                onChange={newBoldValue => handleButtonChange(newBoldValue, selectedItalics)}
             >
-                <Item key="bold">
-                    <TagBold />
-                    <Text>Bold</Text>
-                </Item>
-
-                <Item key="italics">
-                    <TagItalic />
-                    <Text>Italic</Text>
-                </Item>
-            </ActionGroup>
-        </div>
+                <TagBold />
+            </ToggleButton>
+            <ToggleButton
+                isQuiet
+                isEmphasized
+                aria-label="ItalicsButton"
+                isSelected={selectedItalics}
+                onChange={newItalicsValue => handleButtonChange(selectedBold, newItalicsValue)}
+            >
+                <TagItalic />
+            </ToggleButton>
+            <ColorPicker handleColorChange={color => console.log(color.toString("hex"))} />
+        </Flex>
     );
 };
 
