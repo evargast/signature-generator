@@ -18,8 +18,6 @@ const TextStyleOptions: FC<TextStyleProps> = ({ isBold, isItalics, onChange }) =
     const handleButtonChange = (valueBold: boolean, valueItalics: boolean) => {
         setSelectedBold(valueBold);
         setSelectedItalics(valueItalics);
-        isBold = valueBold;
-        isItalics = valueItalics;
         if (onChange) {
             onChange({
                 isBold: valueBold,
@@ -35,7 +33,7 @@ const TextStyleOptions: FC<TextStyleProps> = ({ isBold, isItalics, onChange }) =
                 isEmphasized
                 aria-label="BoldButton"
                 isSelected={selectedBold}
-                onChange={selectedBold => handleButtonChange(selectedBold, selectedItalics)}
+                onChange={newBoldValue => handleButtonChange(newBoldValue, selectedItalics)}
             >
                 <TagBold />
             </ToggleButton>
@@ -44,7 +42,7 @@ const TextStyleOptions: FC<TextStyleProps> = ({ isBold, isItalics, onChange }) =
                 isEmphasized
                 aria-label="ItalicsButton"
                 isSelected={selectedItalics}
-                onChange={selectedItalics => handleButtonChange(selectedBold, selectedItalics)}
+                onChange={newItalicsValue => handleButtonChange(selectedBold, newItalicsValue)}
             >
                 <TagItalic />
             </ToggleButton>
