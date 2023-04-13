@@ -1,6 +1,6 @@
 import { TextField } from "@adobe/react-spectrum";
 import { Flex } from "@adobe/react-spectrum";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 import { TextStyleOptions, TextStyleProps } from "./../TextStyleOptions";
 
@@ -10,11 +10,11 @@ interface UsernameInputProps extends TextStyleProps {
 }
 
 const UsernameInput: FC<UsernameInputProps> = ({ text, isBold, isItalics, label }) => {
-    const [nameValue, setNameValue] = React.useState(text);
+    const [nameValue, setNameValue] = useState(text);
 
     const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean } | undefined) => {
         // eslint-disable-next-line no-console
-        console.log(options); //output printing nicely.
+        console.log(options);
     };
 
     return (
