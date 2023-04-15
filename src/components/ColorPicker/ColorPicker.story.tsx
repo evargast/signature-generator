@@ -30,7 +30,7 @@ const Basic = ColorPickerStory.bind({});
 
 Basic.args = {
     // eslint-disable-next-line no-console
-    handleColorChange: console.log,
+    onColorChange: console.log,
 };
 
 export { Basic };

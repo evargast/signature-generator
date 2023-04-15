@@ -1,5 +1,4 @@
 import { darkTheme, Flex, lightTheme, Provider as ProviderV3 } from "@adobe/react-spectrum";
-import { ColorPicker } from "components/ColorPicker";
 import { Layout } from "components/Layout";
 import TablePreview from "components/TablePreview";
 import { UsernameInput } from "components/UsernameInput";
@@ -20,8 +19,6 @@ const App: FC = () => {
                     <UsernameInput label={"Email"} />
                     <UsernameInput label={"Phone number"} />
                     <UsernameInput label={"LinkedIn"} />
-                    {/* eslint-disable-next-line no-console */}
-                    <ColorPicker handleColorChange={color => console.log(color.toString("hex"))} />
                     <TablePreview />
                 </Flex>
             </Layout>
