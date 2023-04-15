@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { Flex, ToggleButton } from "@adobe/react-spectrum";
+import { Color } from "@react-stately/color";
 import TagBold from "@spectrum-icons/workflow/TagBold";
 import TagItalic from "@spectrum-icons/workflow/TagItalic";
 import { ColorPicker } from "components/ColorPicker";
@@ -8,6 +9,7 @@ import React, { FC, useState } from "react";
 export interface TextStyleProps {
     isBold?: boolean;
     isItalics?: boolean;
+    onColorChange?: Color;
     onChange?: (options: { isBold?: boolean; isItalics?: boolean }) => void;
 }
 
