@@ -5,18 +5,18 @@ import { Color } from "@react-types/color";
 import TextColor from "@spectrum-icons/workflow/TextColor";
 import React, { FC, useState } from "react";
 
-interface Props {
-    handleColorChange: (color: Color) => void;
+export interface ColorPickerProps {
+    onColorChange: (color: Color) => void;
     defaultColor?: string;
 }
 
-const ColorPicker: FC<Props> = ({ handleColorChange, defaultColor = "#EDFA16" }) => {
+const ColorPicker: FC<ColorPickerProps> = ({ onColorChange, defaultColor = "#EDFA16" }) => {
     const [currentValue, setCurrentValue] = useState<Color>(parseColor(defaultColor));
     const [finalValue, setFinalValue] = useState<Color>(parseColor(defaultColor));
 
     const handleDialogClose = (isOpen: boolean) => {
         if (!isOpen) {
-            handleColorChange(finalValue);
+            onColorChange(finalValue);
         }
     };
 

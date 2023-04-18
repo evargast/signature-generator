@@ -26,6 +26,7 @@ const App: FC = () => {
                     <UsernameInput label={"Email"} />
                     <UsernameInput label={"Phone number"} />
                     <UsernameInput label={"LinkedIn"} /> */}
+
                     <TablePreview />
                 </Flex>
             </Layout>
