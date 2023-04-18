@@ -1,19 +1,25 @@
+import { useSignatureContext } from "providers/SignatureProvider";
 import React, { FC } from "react";
 
 interface Props {}
 
 const TablePreview: FC<Props> = ({}) => {
+    const { name } = useSignatureContext();
+
     return (
         <>
-            <style>{`
-        table, td {
-            border: 1px solid black;
-          }
-  `}</style>
+            <style>{`table, td {border: 1px solid black;}`}</style>
             <table>
                 <tr>
                     <td rowSpan={3}>Image Taking 3 cells</td>
-                    <td>Name</td>
+                    <td
+                        style={{
+                            fontWeight: name.cssBold,
+                            fontStyle: name.cssItalics,
+                        }}
+                    >
+                        {name.textValue}
+                    </td>
                     <td>Phone Number</td>
                 </tr>
                 <tr>

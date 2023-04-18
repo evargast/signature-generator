@@ -1,15 +1,23 @@
 import { localStorageKeys, useLocalStorageState } from "hooks/useLocalStorage";
-import React, { createContext, FC, useContext, useState } from "react";
+import React, { createContext, CSSProperties, FC, useContext, useState } from "react";
 
 interface InputElementOptions {
     textValue: string;
-    isBold: Boolean;
-    isItalics: Boolean;
+    isBold: boolean;
+    isItalics: boolean;
+    cssBold: CSSProperties["fontWeight"];
+    cssItalics: CSSProperties["fontStyle"];
 }
 
 const createSignatureProviderState = () => {
     const [imgUrl, setImgUrl] = useState<string>();
-    const [name, setName] = useState<InputElementOptions>({ textValue: "", isBold: false, isItalics: false });
+    const [name, setName] = useState<InputElementOptions>({
+        textValue: "",
+        isBold: false,
+        isItalics: false,
+        cssBold: "normal",
+        cssItalics: "normal",
+    });
     const [isDarkMode, setIsDarkMode] = useLocalStorageState(localStorageKeys.isDarkMode, false);
 
     /**
@@ -23,12 +31,16 @@ const createSignatureProviderState = () => {
         // ...name spreads the original state into the new object, ...updates spreads the contents on top of that one thus overriding (updating) the values
         const copyOfName = { ...name, ...updates };
 
+        copyOfName["cssBold"] = copyOfName.isBold ? "bold" : "normal";
+        copyOfName["cssItalics"] = copyOfName.isItalics ? "italic" : "normal";
+
         // after we have created the new object we call the state setter to update the state
         setName(copyOfName);
     };
 
     return {
         imgUrl,
+        name,
         setImgUrl,
         updateName,
         isDarkMode,
@@ -39,6 +51,7 @@ const createSignatureProviderState = () => {
 export type SignatureContextProps = ReturnType<typeof createSignatureProviderState>;
 
 const SignatureContext = createContext<SignatureContextProps>({} as SignatureContextProps);
+
 const SignatureProvider: FC = ({ children }) => {
     return <SignatureContext.Provider value={createSignatureProviderState()}>{children}</SignatureContext.Provider>;
 };

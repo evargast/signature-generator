@@ -1,21 +1,25 @@
 import { TextField } from "@adobe/react-spectrum";
 import { Flex } from "@adobe/react-spectrum";
 import { Color } from "@react-types/color";
-import React, { FC, useState } from "react";
+import { SignatureContextProps } from "providers/SignatureProvider";
+import React, { FC } from "react";
+
 
 import { TextStyleOptions, TextStyleProps } from "./../TextStyleOptions";
 
 interface UsernameInputProps extends Omit<TextStyleProps, "onColorChange"> {
     text?: string;
     label: string;
+    onInputChange: SignatureContextProps["updateName"];
 }
 
-const UsernameInput: FC<UsernameInputProps> = ({ text, isBold, isItalics, label }) => {
-    const [nameValue, setNameValue] = useState(text);
+const UsernameInput: FC<UsernameInputProps> = ({ onInputChange, text, isBold, isItalics, label }) => {
+    const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean }) => {
+        onInputChange(options);
+    };
 
-    const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean } | undefined) => {
-        // eslint-disable-next-line no-console
-        console.log(options);
+    const handleInputChange = (value: string) => {
+        onInputChange({ textValue: value });
     };
 
     const handleColorChange = (color: Color) => {
@@ -25,13 +29,16 @@ const UsernameInput: FC<UsernameInputProps> = ({ text, isBold, isItalics, label 
 
     return (
         <Flex gap="size-200" alignItems="end" direction="row">
-            <TextField label={label} onChange={setNameValue} value={nameValue} />
+
             <TextStyleOptions
                 onChange={handleButtonChange}
-                onColorChange={handleColorChange} // undefined to push onColorChange={onColorChange}
+                onColorChange={handleColorChange} 
                 isBold={isBold}
                 isItalics={isItalics}
             />
+
+            <TextField label={label} onChange={handleInputChange} value={text} />
+
         </Flex>
     );
 };
