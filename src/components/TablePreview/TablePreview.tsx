@@ -1,17 +1,37 @@
 import { Button } from "@adobe/react-spectrum";
 import { useSignatureContext } from "providers/SignatureProvider";
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 
 interface Props {}
 
 const TablePreview: FC<Props> = ({}) => {
     const { name } = useSignatureContext();
 
+    const tableRef = useRef<HTMLTableElement>(null);
+
+    const handleCopy = () => {
+        if (tableRef.current) {
+            copyTableToClipboard(tableRef.current);
+        }
+    };
+
+    const copyTableToClipboard = (table: HTMLTableElement) => {
+        const range = document.createRange();
+        range.selectNode(table);
+        const selection = window.getSelection();
+        if (selection) {
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand("copy");
+            selection.removeAllRanges();
+        }
+    };
+
     return (
         <>
             <div style={{ display: "flex", flexDirection: "column" }}>
                 <style>{`table, td {border: 1px solid black;}`}</style>
-                <table>
+                <table ref={tableRef}>
                     <tr>
                         <td rowSpan={3}>Image Taking 3 cells</td>
                         <td
@@ -34,15 +54,7 @@ const TablePreview: FC<Props> = ({}) => {
                     </tr>
                 </table>
 
-                <Button
-                    marginTop="size-150"
-                    variant="accent"
-                    width="100%"
-                    onPress={() => {
-                        // eslint-disable-next-line no-console
-                        console.log("Copied text!");
-                    }}
-                >
+                <Button marginTop="size-150" variant="accent" width="100%" onPress={handleCopy}>
                     Copy
                 </Button>
             </div>
