@@ -5,8 +5,7 @@ interface InputElementOptions {
     textValue: string;
     isBold: boolean;
     isItalics: boolean;
-    cssBold: CSSProperties["fontWeight"];
-    cssItalics: CSSProperties["fontStyle"];
+    style: CSSProperties;
 }
 
 const createSignatureProviderState = () => {
@@ -15,9 +14,9 @@ const createSignatureProviderState = () => {
         textValue: "",
         isBold: false,
         isItalics: false,
-        cssBold: "normal",
-        cssItalics: "normal",
+        style: { fontWeight: "normal", fontStyle: "normal" },
     });
+
     const [isDarkMode, setIsDarkMode] = useLocalStorageState(localStorageKeys.isDarkMode, false);
 
     /**
@@ -31,10 +30,11 @@ const createSignatureProviderState = () => {
         // ...name spreads the original state into the new object, ...updates spreads the contents on top of that one thus overriding (updating) the values
         const copyOfName = { ...name, ...updates };
 
-        copyOfName["cssBold"] = copyOfName.isBold ? "bold" : "normal";
-        copyOfName["cssItalics"] = copyOfName.isItalics ? "italic" : "normal";
+        copyOfName.style = {
+            fontWeight: copyOfName.isBold ? "bold" : "normal",
+            fontStyle: copyOfName.isItalics ? "italic" : "normal",
+        };
 
-        // after we have created the new object we call the state setter to update the state
         setName(copyOfName);
     };
 

@@ -33,14 +33,7 @@ const TablePreview: FC<Props> = ({}) => {
                 <tbody>
                     <tr>
                         <td rowSpan={3}>Image Taking 3 cells</td>
-                        <td
-                            style={{
-                                fontWeight: name.cssBold,
-                                fontStyle: name.cssItalics,
-                            }}
-                        >
-                            {name.textValue}
-                        </td>
+                        <td style={name.style}>{name.textValue}</td>
                         <td>Phone Number</td>
                     </tr>
                     <tr>
