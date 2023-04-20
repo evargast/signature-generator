@@ -4,7 +4,6 @@ import { Color } from "@react-types/color";
 import { SignatureContextProps } from "providers/SignatureProvider";
 import React, { FC } from "react";
 
-
 import { TextStyleOptions, TextStyleProps } from "./../TextStyleOptions";
 
 interface UsernameInputProps extends Omit<TextStyleProps, "onColorChange"> {
@@ -29,16 +28,14 @@ const UsernameInput: FC<UsernameInputProps> = ({ onInputChange, text, isBold, is
 
     return (
         <Flex gap="size-200" alignItems="end" direction="row">
+            <TextField label={label} onChange={handleInputChange} value={text} />
 
             <TextStyleOptions
                 onChange={handleButtonChange}
-                onColorChange={handleColorChange} 
+                onColorChange={handleColorChange}
                 isBold={isBold}
                 isItalics={isItalics}
             />
-
-            <TextField label={label} onChange={handleInputChange} value={text} />
-
         </Flex>
     );
 };
