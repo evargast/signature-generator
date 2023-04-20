@@ -12,6 +12,8 @@ const TablePreview: FC<Props> = ({}) => {
             <div style={{ display: "flex", flexDirection: "column" }}>
                 <style>{`table, td {border: 1px solid black;}`}</style>
                 <table>
+                <tbody>
+
                     <tr>
                         <td rowSpan={3}>Image Taking 3 cells</td>
                         <td
@@ -32,8 +34,8 @@ const TablePreview: FC<Props> = ({}) => {
                         <td>Company</td>
                         <td>LinkedIn</td>
                     </tr>
-                </table>
 
+                </table>
                 <Button
                     marginTop="size-150"
                     variant="accent"
