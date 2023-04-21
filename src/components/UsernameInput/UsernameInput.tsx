@@ -28,14 +28,13 @@ const UsernameInput: FC<UsernameInputProps> = ({ onInputChange, text, isBold, is
 
     return (
         <Flex gap="size-200" alignItems="end" direction="row">
+            <TextField label={label} onChange={handleInputChange} value={text} />
             <TextStyleOptions
                 onChange={handleButtonChange}
                 onColorChange={handleColorChange}
                 isBold={isBold}
                 isItalics={isItalics}
             />
-
-            <TextField label={label} onChange={handleInputChange} value={text} />
         </Flex>
     );
 };
