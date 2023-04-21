@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Button, Flex } from "@adobe/react-spectrum";
 import { useSignatureContext } from "providers/SignatureProvider";
 import React, { FC, useRef } from "react";
@@ -16,17 +17,12 @@ const TablePreview: FC<Props> = ({}) => {
     };
 
     const copyTableToClipboard = (table: HTMLTableElement) => {
-        const range = document.createRange();
-        range.selectNode(table);
-        const selection = window.getSelection();
-        if (selection) {
-            selection.removeAllRanges();
-            selection.addRange(range);
-            document.execCommand("copy");
-            selection.removeAllRanges();
-            // eslint-disable-next-line no-console
-            console.log("Copied text!");
-        }
+        const htmlData = new ClipboardItem({
+            "text/html": new Blob([table.outerHTML], { type: "text/html" }),
+        });
+
+        navigator.clipboard.write([htmlData]);
+        console.log("Table copied!");
     };
 
     return (
