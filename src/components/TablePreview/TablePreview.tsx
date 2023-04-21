@@ -1,18 +1,35 @@
-import { Button } from "@adobe/react-spectrum";
+/* eslint-disable no-console */
+import { Button, Flex } from "@adobe/react-spectrum";
 import { useSignatureContext } from "providers/SignatureProvider";
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 
 interface Props {}
 
 const TablePreview: FC<Props> = ({}) => {
     const { name } = useSignatureContext();
 
+    const tableRef = useRef<HTMLTableElement>(null);
+
+    const handleCopy = () => {
+        if (tableRef.current) {
+            copyTableToClipboard(tableRef.current);
+        }
+    };
+
+    const copyTableToClipboard = (table: HTMLTableElement) => {
+        const htmlData = new ClipboardItem({
+            "text/html": new Blob([table.outerHTML], { type: "text/html" }),
+        });
+
+        navigator.clipboard.write([htmlData]);
+        console.log("Table copied!");
+    };
+
     return (
-        <>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-                <style>{`table, td {border: 1px solid black;}`}</style>
-                <table>
-                    <tbody>
+        <Flex direction="column">
+            <style>{`table, td {border: 1px solid black;}`}</style>
+            <table ref={tableRef}>
+                <tbody>
                         <tr>
                             <td rowSpan={3}>Image Taking 3 cells</td>
                             <td
@@ -34,20 +51,12 @@ const TablePreview: FC<Props> = ({}) => {
                             <td>LinkedIn</td>
                         </tr>
                     </tbody>
-                </table>
-                <Button
-                    marginTop="size-150"
-                    variant="accent"
-                    width="100%"
-                    onPress={() => {
-                        // eslint-disable-next-line no-console
-                        console.log("Copied text!");
-                    }}
-                >
-                    Copy
-                </Button>
-            </div>
-        </>
+            </table>
+
+            <Button marginTop="size-150" variant="accent" width="100%" onPress={handleCopy}>
+                Copy
+            </Button>
+        </Flex>
     );
 };
 export default TablePreview;
