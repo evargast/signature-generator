@@ -31,10 +31,8 @@ const TablePreview: FC<Props> = ({}) => {
             <table ref={tableRef}>
                 <tbody>
                     <tr>
-                        <td rowSpan={3}>
-                            <Flex alignItems="center">
-                                <img src={imgUrl} height="60"></img>
-                            </Flex>
+                        <td rowSpan={3} align="center">
+                            <img src={imgUrl} height="60"></img>
                         </td>
                         <td style={name.style}>{name.textValue}</td>
                         <td>Phone Number</td>
