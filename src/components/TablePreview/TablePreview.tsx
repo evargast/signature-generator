@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Button, Flex } from "@adobe/react-spectrum";
 import { ToastContainer, ToastQueue } from "@react-spectrum/toast";
 import { useSignatureContext } from "providers/SignatureProvider";
@@ -8,6 +7,7 @@ interface Props {}
 
 const TablePreview: FC<Props> = ({}) => {
     const { name } = useSignatureContext();
+    const { imgUrl } = useSignatureContext();
 
     const tableRef = useRef<HTMLTableElement>(null);
 
@@ -32,7 +32,11 @@ const TablePreview: FC<Props> = ({}) => {
             <table ref={tableRef}>
                 <tbody>
                     <tr>
-                        <td rowSpan={3}>Image Taking 3 cells</td>
+                        <td rowSpan={3}>
+                            <Flex alignItems="center">
+                                <img src={imgUrl} height="60"></img>
+                            </Flex>
+                        </td>
                         <td style={name.style}>{name.textValue}</td>
                         <td>Phone Number</td>
                     </tr>
