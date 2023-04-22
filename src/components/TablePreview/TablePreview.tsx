@@ -6,8 +6,7 @@ import React, { FC, useRef } from "react";
 interface Props {}
 
 const TablePreview: FC<Props> = ({}) => {
-    const { name } = useSignatureContext();
-    const { imgUrl } = useSignatureContext();
+    const { name, imgUrl } = useSignatureContext();
 
     const tableRef = useRef<HTMLTableElement>(null);
 
