@@ -1,4 +1,5 @@
 import { darkTheme, Flex, lightTheme, Provider as ProviderV3 } from "@adobe/react-spectrum";
+import { ToastContainer } from "@react-spectrum/toast";
 import { Layout } from "components/Layout";
 import TablePreview from "components/TablePreview";
 import { UsernameInput } from "components/UsernameInput";
@@ -12,6 +13,7 @@ const App: FC = () => {
 
     return (
         <ProviderV3 theme={isDarkMode ? darkTheme : lightTheme} colorScheme={"light"} height="100%">
+            <ToastContainer />
             <Layout>
                 <Flex marginX="size-300" alignItems="start" direction="column" justifyContent="center" gap={"size-200"}>
                     <UsernameInput
@@ -26,7 +28,6 @@ const App: FC = () => {
                     <UsernameInput label={"Email"} />
                     <UsernameInput label={"Phone number"} />
                     <UsernameInput label={"LinkedIn"} /> */}
-
                     <TablePreview />
                 </Flex>
             </Layout>

@@ -39,6 +39,7 @@
         "@commitlint/config-conventional": "^17.4.4",
         "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.0",
         "@react-spectrum/color": "^3.0.0-beta.20",
+        "@react-spectrum/toast": "^3.0.0-beta.0",
         "@react-stately/color": "^3.3.0",
         "@storybook/addon-postcss": "^2.0.0",
         "@storybook/react": "^6.5.16",
