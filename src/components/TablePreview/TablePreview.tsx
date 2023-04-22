@@ -23,7 +23,7 @@ const TablePreview: FC<Props> = ({}) => {
         });
 
         navigator.clipboard.write([htmlData]);
-        ToastQueue.positive("Table copied!", { timeout: 5000 });
+        ToastQueue.positive("Signature copied!", { timeout: 5000 });
     };
 
     return (
