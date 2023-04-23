@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Button, Flex } from "@adobe/react-spectrum";
 import { ToastContainer, ToastQueue } from "@react-spectrum/toast";
 import { useSignatureContext } from "providers/SignatureProvider";
@@ -6,8 +5,11 @@ import React, { FC, useRef } from "react";
 
 interface Props {}
 
+/**
+* This component *must* be pure html with inline styling, otherwise we will not be able to copy & paste it into an email.
+*/
 const TablePreview: FC<Props> = ({}) => {
-    const { name } = useSignatureContext();
+    const { name, imgUrl } = useSignatureContext();
 
     const tableRef = useRef<HTMLTableElement>(null);
 
@@ -32,7 +34,9 @@ const TablePreview: FC<Props> = ({}) => {
             <table ref={tableRef}>
                 <tbody>
                     <tr>
-                        <td rowSpan={3}>Image Taking 3 cells</td>
+                        <td rowSpan={3} align="center">
+                            <img src={imgUrl} height="60"></img>
+                        </td>
                         <td style={name.style}>{name.textValue}</td>
                         <td>Phone Number</td>
                     </tr>
