@@ -93,6 +93,7 @@
     },
     "dependencies": {
         "@adobe/react-spectrum": "^3.24.1",
+        "@react-oauth/google": "^0.10.0",
         "@storybook/addon-actions": "^6.5.16",
         "file-loader": "^6.2.0",
         "react": "^17.0.2",
