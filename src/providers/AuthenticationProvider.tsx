@@ -41,7 +41,6 @@ const createAuthenticationProviderState = () => {
         googleLogout();
         setProfile(undefined);
         setIsLoggedIn(false);
-        console.log("logging out");
     };
 
     const handleErrorMessage = (error = "error") => {
@@ -49,25 +48,22 @@ const createAuthenticationProviderState = () => {
     };
 
     useEffect(() => {
-        (async () => {
-            if (user) {
-                try {
-                    const response = await axios.get(
-                        `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
-                        {
-                            headers: {
-                                Authorization: `Bearer ${user.access_token}`,
-                                Accept: "application/json",
-                            },
-                        },
-                    );
+        if (user) {
+            axios
+                .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+                    headers: {
+                        Authorization: `Bearer ${user.access_token}`,
+                        Accept: "application/json",
+                    },
+                })
+                .then(response => {
                     setProfile(response.data);
                     setIsLoggedIn(true);
-                } catch (error) {
+                })
+                .catch(error => {
                     console.log(error);
-                }
-            }
-        })();
+                });
+        }
     }, [user]);
 
     return {
