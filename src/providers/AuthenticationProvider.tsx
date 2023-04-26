@@ -3,10 +3,30 @@ import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import React, { createContext, FC, useContext, useEffect, useState } from "react";
 
+interface GoogleUser {
+    access_token: string;
+    authuser: string;
+    expires_at: number;
+    prompt: string;
+    scope: string;
+    token_type: string;
+}
+interface GoogleProfile {
+    email: string;
+    family_name: string;
+    given_name: string;
+    id: string;
+    locale: string;
+    name: string;
+    picture: string;
+    verified_email: boolean;
+}
+
 // =========== INIT FUNCTION =========== Will initialize the provider state for us - this lets us infer the type of the return and ensure type safety
 const createAuthenticationProviderState = () => {
-    const [user, setUser] = useState<any>();
-    const [profile, setProfile] = useState<any>({});
+    const [user, setUser] = useState<GoogleUser>();
+    const [profile, setProfile] = useState<GoogleProfile>();
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
     // const login = useGoogleLogin({
     //     onSuccess: (codeClientConfig: CodeClientConfig) => setUser(codeClientConfig),
@@ -26,7 +46,8 @@ const createAuthenticationProviderState = () => {
 
     const handleLogout = () => {
         googleLogout();
-        setProfile(null);
+        setProfile(undefined);
+        setIsLoggedIn(false);
         console.log("logging out");
     };
 
@@ -35,9 +56,7 @@ const createAuthenticationProviderState = () => {
     };
 
     useEffect(() => {
-        console.log("in here!");
         (async () => {
-            console.log("not in here");
             if (user) {
                 try {
                     const response = await axios.get(
@@ -52,6 +71,7 @@ const createAuthenticationProviderState = () => {
 
                     console.log("inside axios!", response.data); //working
                     setProfile(response.data);
+                    setIsLoggedIn(true);
                     //console.log("profile set.", profile); //profile remains undefined.
                     //console.log("user data:", user);
                 } catch (error) {
@@ -59,10 +79,19 @@ const createAuthenticationProviderState = () => {
                 }
             }
         })();
-        console.log("out here");
     }, [user]);
 
-    return { user, setUser, profile, setProfile, handleLogin, handleLogout, handleErrorMessage, handleSuccess };
+    return {
+        user,
+        setUser,
+        profile,
+        setProfile,
+        isLoggedIn,
+        handleLogin,
+        handleLogout,
+        handleErrorMessage,
+        handleSuccess,
+    };
 };
 
 export type AuthenticationContextProps = ReturnType<typeof createAuthenticationProviderState>;

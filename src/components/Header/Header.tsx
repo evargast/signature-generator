@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Flex } from "@adobe/react-spectrum";
+import { Button, Flex } from "@adobe/react-spectrum";
 import { ToggleButton } from "@adobe/react-spectrum";
 import Light from "@spectrum-icons/workflow/Light";
 import Moon from "@spectrum-icons/workflow/Moon";
@@ -14,7 +14,7 @@ interface Props {
 const Header: FC<Props> = ({}) => {
     // const [selected, setSelected] = useState(isToggled);
     const { isDarkMode, setIsDarkMode } = useSignatureContext();
-    const { handleLogin, handleLogout } = useAuthenticationContext();
+    const { handleLogin, handleLogout, isLoggedIn } = useAuthenticationContext();
 
     return (
         <Flex direction="row" alignItems="baseline" justifyContent="space-between">
@@ -24,8 +24,9 @@ const Header: FC<Props> = ({}) => {
                     {isDarkMode ? <Moon /> : <Light />}
                 </ToggleButton>
                 {/* <GoogleLogin onSuccess={handleSuccess} onError={handleErrorMessage} /> */}
-                <button onClick={() => handleLogin()}>Sign in with Google 🚀 </button>
-                <button onClick={() => handleLogout()}>Sign out with Google 🚀 </button>
+                <Button variant="cta" style="outline" onPress={() => (isLoggedIn ? handleLogout() : handleLogin())}>
+                    {isLoggedIn ? "Sign out" : "Sign in with Google 🚀"}
+                </Button>
             </Flex>
         </Flex>
     );
