@@ -19,8 +19,8 @@ const App: FC = () => {
         <ProviderV3 theme={isDarkMode ? darkTheme : lightTheme} colorScheme={"light"} height="100%">
             <ToastContainer />
             <Layout>
-                <h1>{profile?.given_name}</h1>
                 <Flex marginX="size-300" alignItems="start" direction="column" justifyContent="center" gap={"size-200"}>
+                    {profile ? <h3>Welcome {profile?.given_name}</h3> : <></>}
                     <UsernameInput
                         label={"Name"}
                         text={name.textValue}

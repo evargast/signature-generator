@@ -28,19 +28,12 @@ const createAuthenticationProviderState = () => {
     const [profile, setProfile] = useState<GoogleProfile>();
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-    // const login = useGoogleLogin({
-    //     onSuccess: (codeClientConfig: CodeClientConfig) => setUser(codeClientConfig),
-    //     // eslint-disable-next-line no-console
-    //     // onError: (error: string) => console.log("Login Failed:", error),
-    // });
-
     const handleSuccess = (credentialResponse: any) => {
         setUser(credentialResponse);
     };
 
     const handleLogin = useGoogleLogin({
         onSuccess: handleSuccess,
-        // eslint-disable-next-line no-console
         onError: error => console.log("Login Failed:", error),
     });
 
@@ -68,12 +61,8 @@ const createAuthenticationProviderState = () => {
                             },
                         },
                     );
-
-                    console.log("inside axios!", response.data); //working
                     setProfile(response.data);
                     setIsLoggedIn(true);
-                    //console.log("profile set.", profile); //profile remains undefined.
-                    //console.log("user data:", user);
                 } catch (error) {
                     console.log(error);
                 }
