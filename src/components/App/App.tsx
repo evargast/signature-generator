@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 import { darkTheme, Flex, lightTheme, Provider as ProviderV3 } from "@adobe/react-spectrum";
 import { ToastContainer } from "@react-spectrum/toast";
 import ImgInput from "components/ImgInput";
 import { Layout } from "components/Layout";
 import TablePreview from "components/TablePreview";
 import { UsernameInput } from "components/UsernameInput";
-import { AuthenticationProvider } from "providers/AuthenticationProvider";
+import { AuthenticationProvider, useAuthenticationContext } from "providers/AuthenticationProvider";
 import { useSignatureContext } from "providers/SignatureProvider";
 import React, { FC } from "react";
 
@@ -12,12 +13,14 @@ import "./App.css";
 
 const App: FC = () => {
     const { isDarkMode, updateName, name } = useSignatureContext();
+    const { profile } = useAuthenticationContext();
 
     return (
         <AuthenticationProvider>
             <ProviderV3 theme={isDarkMode ? darkTheme : lightTheme} colorScheme={"light"} height="100%">
                 <ToastContainer />
                 <Layout>
+                    <h1>{profile?.given_name}</h1>
                     <Flex
                         marginX="size-300"
                         alignItems="start"
