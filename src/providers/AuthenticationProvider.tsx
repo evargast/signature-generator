@@ -43,10 +43,6 @@ const createAuthenticationProviderState = () => {
         setIsLoggedIn(false);
     };
 
-    const handleErrorMessage = (error = "error") => {
-        console.log(error);
-    };
-
     useEffect(() => {
         if (user) {
             axios
@@ -67,15 +63,10 @@ const createAuthenticationProviderState = () => {
     }, [user]);
 
     return {
-        user,
-        setUser,
         profile,
-        setProfile,
         isLoggedIn,
         handleLogin,
         handleLogout,
-        handleErrorMessage,
-        handleSuccess,
     };
 };
 
