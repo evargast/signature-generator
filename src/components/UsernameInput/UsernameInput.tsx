@@ -1,24 +1,27 @@
 import { TextField } from "@adobe/react-spectrum";
 import { Flex } from "@adobe/react-spectrum";
 import { Color } from "@react-types/color";
-import { SignatureContextProps } from "providers/SignatureProvider";
+import { InputElementOptions } from "providers/SignatureProvider";
 import React, { FC } from "react";
 
 import { TextStyleOptions, TextStyleProps } from "./../TextStyleOptions";
 
 interface UsernameInputProps extends Omit<TextStyleProps, "onColorChange"> {
+    type: "name" | "email" | "title" | "company" | "phone" | "linkedin";
     text?: string;
     label: string;
-    onInputChange: SignatureContextProps["updateName"];
+    onInputChange: (updates: Partial<InputElementOptions>) => void;
 }
 
-const UsernameInput: FC<UsernameInputProps> = ({ onInputChange, text, isBold, isItalics, label }) => {
+const UsernameInput: FC<UsernameInputProps> = ({ type, onInputChange, text, isBold, isItalics, label }) => {
     const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean }) => {
-        onInputChange(options);
+        // Since the provider needs a type to know where to apply the logic, we are adding it to the options object
+        const modifiedOptions = { ...options, type: type };
+        onInputChange(modifiedOptions);
     };
 
     const handleInputChange = (value: string) => {
-        onInputChange({ textValue: value });
+        onInputChange({ type, textValue: value });
     };
 
     const handleColorChange = (color: Color) => {

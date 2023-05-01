@@ -2,6 +2,7 @@ import { localStorageKeys, useLocalStorageState } from "hooks/useLocalStorage";
 import React, { createContext, CSSProperties, FC, useContext, useState } from "react";
 
 interface InputElementOptions {
+    type: "name" | "email" | "title" | "phone" | "linkedin" | "company";
     textValue: string;
     isBold: boolean;
     isItalics: boolean;
@@ -10,7 +11,47 @@ interface InputElementOptions {
 
 const createSignatureProviderState = () => {
     const [imgUrl, setImgUrl] = useState<string>();
+
     const [name, setName] = useState<InputElementOptions>({
+        type: "name",
+        textValue: "",
+        isBold: false,
+        isItalics: false,
+        style: { fontWeight: "normal", fontStyle: "normal" },
+    });
+
+    const [email, setEmail] = useState<InputElementOptions>({
+        type: "email",
+        textValue: "",
+        isBold: false,
+        isItalics: false,
+        style: { fontWeight: "normal", fontStyle: "normal" },
+    });
+
+    const [company, setCompany] = useState<InputElementOptions>({
+        type: "company",
+        textValue: "",
+        isBold: false,
+        isItalics: false,
+        style: { fontWeight: "normal", fontStyle: "normal" },
+    });
+
+    const [title, setTitle] = useState<InputElementOptions>({
+        type: "title",
+        textValue: "",
+        isBold: false,
+        isItalics: false,
+        style: { fontWeight: "normal", fontStyle: "normal" },
+    });
+    const [linkedin, setLinkedin] = useState<InputElementOptions>({
+        type: "linkedin",
+        textValue: "",
+        isBold: false,
+        isItalics: false,
+        style: { fontWeight: "normal", fontStyle: "normal" },
+    });
+    const [phone, setPhone] = useState<InputElementOptions>({
+        type: "phone",
         textValue: "",
         isBold: false,
         isItalics: false,
@@ -19,30 +60,68 @@ const createSignatureProviderState = () => {
 
     const [isDarkMode, setIsDarkMode] = useLocalStorageState(localStorageKeys.isDarkMode, false);
 
-    /**
-     * Partial<> makes the types inside optional,
-     * meaning that updates can have any of the elements within the InputElementOptions interface but does NOT require them all
-     * @example updateName({isBold: true}) // this will only update the isBold key of the state object
-     */
-    const updateName = (updates: Partial<InputElementOptions>) => {
-        // spread (...) operator, copies (spreads) the object into a new one let a = { Hello: "world"}, let b = { ...a } will spread a into the new object that the curlies { } are creating
-        // if we spread multiple things, the second one will be spread on top of the first one
-        // ...name spreads the original state into the new object, ...updates spreads the contents on top of that one thus overriding (updating) the values
-        const copyOfName = { ...name, ...updates };
+    const updateState = (updates: Partial<InputElementOptions>) => {
+        if (updates.type === "name") {
+            const copyOfName = { ...name, ...updates };
+            copyOfName.style = {
+                fontWeight: copyOfName.isBold ? "bold" : "normal",
+                fontStyle: copyOfName.isItalics ? "italic" : "normal",
+            };
+            setName(copyOfName);
+        }
 
-        copyOfName.style = {
-            fontWeight: copyOfName.isBold ? "bold" : "normal",
-            fontStyle: copyOfName.isItalics ? "italic" : "normal",
-        };
-
-        setName(copyOfName);
+        if (updates.type === "email") {
+            const copyOfEmail = { ...email, ...updates };
+            copyOfEmail.style = {
+                fontWeight: copyOfEmail.isBold ? "bold" : "normal",
+                fontStyle: copyOfEmail.isItalics ? "italic" : "normal",
+            };
+            setEmail(copyOfEmail);
+        }
+        if (updates.type === "company") {
+            const copyOfCompany = { ...company, ...updates };
+            copyOfCompany.style = {
+                fontWeight: copyOfCompany.isBold ? "bold" : "normal",
+                fontStyle: copyOfCompany.isItalics ? "italic" : "normal",
+            };
+            setCompany(copyOfCompany);
+        }
+        if (updates.type === "title") {
+            const copyOfTitle = { ...title, ...updates };
+            copyOfTitle.style = {
+                fontWeight: copyOfTitle.isBold ? "bold" : "normal",
+                fontStyle: copyOfTitle.isItalics ? "italic" : "normal",
+            };
+            setTitle(copyOfTitle);
+        }
+        if (updates.type === "linkedin") {
+            const copyOfLinkedin = { ...linkedin, ...updates };
+            copyOfLinkedin.style = {
+                fontWeight: copyOfLinkedin.isBold ? "bold" : "normal",
+                fontStyle: copyOfLinkedin.isItalics ? "italic" : "normal",
+            };
+            setLinkedin(copyOfLinkedin);
+        }
+        if (updates.type === "phone") {
+            const copyOfPhone = { ...phone, ...updates };
+            copyOfPhone.style = {
+                fontWeight: copyOfPhone.isBold ? "bold" : "normal",
+                fontStyle: copyOfPhone.isItalics ? "italic" : "normal",
+            };
+            setPhone(copyOfPhone);
+        }
     };
 
     return {
         imgUrl,
         name,
+        email,
+        company,
+        title,
+        linkedin,
+        phone,
         setImgUrl,
-        updateName,
+        updateState,
         isDarkMode,
         setIsDarkMode,
     };
@@ -60,4 +139,4 @@ const useSignatureContext = () => {
     return useContext(SignatureContext);
 };
 
-export { SignatureContext, SignatureProvider, useSignatureContext };
+export { SignatureContext, SignatureProvider, useSignatureContext, type InputElementOptions };
