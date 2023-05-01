@@ -6,8 +6,8 @@ import React, { FC, useRef } from "react";
 interface Props {}
 
 /**
-* This component *must* be pure html with inline styling, otherwise we will not be able to copy & paste it into an email.
-*/
+ * This component *must* be pure html with inline styling, otherwise we will not be able to copy & paste it into an email.
+ */
 const TablePreview: FC<Props> = ({}) => {
     const { name, imgUrl } = useSignatureContext();
 
