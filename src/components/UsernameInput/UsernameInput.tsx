@@ -7,20 +7,36 @@ import React, { FC } from "react";
 import { TextStyleOptions, TextStyleProps } from "./../TextStyleOptions";
 
 interface UsernameInputProps extends Omit<TextStyleProps, "onColorChange"> {
+<<<<<<< HEAD
     state: InputElementOptions;
+=======
+    type: "name" | "email" | "title" | "company" | "phone" | "linkedin";
+    text?: string;
+>>>>>>> bc7dc1f (feat: implement all user input fields)
     label: string;
     onInputChange: (updates: Partial<InputElementOptions>) => void;
 }
 
+<<<<<<< HEAD
 const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) => {
     const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean }) => {
         // Since the provider needs a type to know where to apply the logic, we are adding it to the options object
         const modifiedOptions = { ...options, type: state.type };
+=======
+const UsernameInput: FC<UsernameInputProps> = ({ type, onInputChange, text, isBold, isItalics, label }) => {
+    const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean }) => {
+        // Since the provider needs a type to know where to apply the logic, we are adding it to the options object
+        const modifiedOptions = { ...options, type: type };
+>>>>>>> bc7dc1f (feat: implement all user input fields)
         onInputChange(modifiedOptions);
     };
 
     const handleInputChange = (value: string) => {
+<<<<<<< HEAD
         onInputChange({ type: state.type, textValue: value });
+=======
+        onInputChange({ type, textValue: value });
+>>>>>>> bc7dc1f (feat: implement all user input fields)
     };
 
     const handleColorChange = (color: Color) => {

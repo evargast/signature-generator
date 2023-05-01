@@ -19,6 +19,7 @@ const getDefaultInputElementOptions = (type: InputElementOptions["type"]): Input
 
 const createSignatureProviderState = () => {
     const [imgUrl, setImgUrl] = useState<string>();
+<<<<<<< HEAD
     const [name, setName] = useState<InputElementOptions>(getDefaultInputElementOptions("name"));
     const [email, setEmail] = useState<InputElementOptions>(getDefaultInputElementOptions("email"));
     const [company, setCompany] = useState<InputElementOptions>(getDefaultInputElementOptions("company"));
@@ -63,6 +64,106 @@ const createSignatureProviderState = () => {
                 break;
             default:
                 break;
+=======
+
+    const [name, setName] = useState<InputElementOptions>({
+        type: "name",
+        textValue: "",
+        isBold: false,
+        isItalics: false,
+        style: { fontWeight: "normal", fontStyle: "normal" },
+    });
+
+    const [email, setEmail] = useState<InputElementOptions>({
+        type: "email",
+        textValue: "",
+        isBold: false,
+        isItalics: false,
+        style: { fontWeight: "normal", fontStyle: "normal" },
+    });
+
+    const [company, setCompany] = useState<InputElementOptions>({
+        type: "company",
+        textValue: "",
+        isBold: false,
+        isItalics: false,
+        style: { fontWeight: "normal", fontStyle: "normal" },
+    });
+
+    const [title, setTitle] = useState<InputElementOptions>({
+        type: "title",
+        textValue: "",
+        isBold: false,
+        isItalics: false,
+        style: { fontWeight: "normal", fontStyle: "normal" },
+    });
+    const [linkedin, setLinkedin] = useState<InputElementOptions>({
+        type: "linkedin",
+        textValue: "",
+        isBold: false,
+        isItalics: false,
+        style: { fontWeight: "normal", fontStyle: "normal" },
+    });
+    const [phone, setPhone] = useState<InputElementOptions>({
+        type: "phone",
+        textValue: "",
+        isBold: false,
+        isItalics: false,
+        style: { fontWeight: "normal", fontStyle: "normal" },
+    });
+
+    const [isDarkMode, setIsDarkMode] = useLocalStorageState(localStorageKeys.isDarkMode, false);
+
+    const updateState = (updates: Partial<InputElementOptions>) => {
+        if (updates.type === "name") {
+            const copyOfName = { ...name, ...updates };
+            copyOfName.style = {
+                fontWeight: copyOfName.isBold ? "bold" : "normal",
+                fontStyle: copyOfName.isItalics ? "italic" : "normal",
+            };
+            setName(copyOfName);
+        }
+
+        if (updates.type === "email") {
+            const copyOfEmail = { ...email, ...updates };
+            copyOfEmail.style = {
+                fontWeight: copyOfEmail.isBold ? "bold" : "normal",
+                fontStyle: copyOfEmail.isItalics ? "italic" : "normal",
+            };
+            setEmail(copyOfEmail);
+        }
+        if (updates.type === "company") {
+            const copyOfCompany = { ...company, ...updates };
+            copyOfCompany.style = {
+                fontWeight: copyOfCompany.isBold ? "bold" : "normal",
+                fontStyle: copyOfCompany.isItalics ? "italic" : "normal",
+            };
+            setCompany(copyOfCompany);
+        }
+        if (updates.type === "title") {
+            const copyOfTitle = { ...title, ...updates };
+            copyOfTitle.style = {
+                fontWeight: copyOfTitle.isBold ? "bold" : "normal",
+                fontStyle: copyOfTitle.isItalics ? "italic" : "normal",
+            };
+            setTitle(copyOfTitle);
+        }
+        if (updates.type === "linkedin") {
+            const copyOfLinkedin = { ...linkedin, ...updates };
+            copyOfLinkedin.style = {
+                fontWeight: copyOfLinkedin.isBold ? "bold" : "normal",
+                fontStyle: copyOfLinkedin.isItalics ? "italic" : "normal",
+            };
+            setLinkedin(copyOfLinkedin);
+        }
+        if (updates.type === "phone") {
+            const copyOfPhone = { ...phone, ...updates };
+            copyOfPhone.style = {
+                fontWeight: copyOfPhone.isBold ? "bold" : "normal",
+                fontStyle: copyOfPhone.isItalics ? "italic" : "normal",
+            };
+            setPhone(copyOfPhone);
+>>>>>>> bc7dc1f (feat: implement all user input fields)
         }
     };
 
