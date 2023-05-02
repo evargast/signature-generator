@@ -23,65 +23,97 @@ const UsernameInputStory: ComponentStory<typeof UsernameInput> = (args): ReactEl
 
 const EmptyTextfieldNoButtons = UsernameInputStory.bind({});
 EmptyTextfieldNoButtons.args = {
-    text: "",
-    isBold: false,
-    isItalics: false,
+    state: {
+        type: "name",
+        textValue: "EmptyTextfieldNoButtons",
+        isBold: false,
+        isItalics: false,
+        style: {},
+    },
     label: "Name",
 };
 
 const EmptyTextfieldBoldOnItalicsOff = UsernameInputStory.bind({});
 EmptyTextfieldBoldOnItalicsOff.args = {
-    text: "",
-    isBold: true,
-    isItalics: false,
+    state: {
+        type: "name",
+        textValue: "EmptyTextfieldBoldOnItalicsOff",
+        isBold: true,
+        isItalics: false,
+        style: {},
+    },
     label: "Name",
 };
 
 const EmptyTextfieldBoldOffItalicsOn = UsernameInputStory.bind({});
 EmptyTextfieldBoldOffItalicsOn.args = {
-    text: "",
-    isBold: false,
-    isItalics: true,
+    state: {
+        type: "name",
+        textValue: "EmptyTextfieldBoldOffItalicsOn",
+        isBold: false,
+        isItalics: true,
+        style: {},
+    },
     label: "Name",
 };
 
 const EmptyTextfieldBoldOnItalicsOn = UsernameInputStory.bind({});
 EmptyTextfieldBoldOnItalicsOn.args = {
-    text: "",
-    isBold: true,
-    isItalics: true,
+    state: {
+        type: "name",
+        textValue: "EmptyTextfieldBoldOnItalicsOn",
+        isBold: true,
+        isItalics: true,
+        style: {},
+    },
     label: "Name",
 };
 
 const FilledTextfieldBoldOffItalicsOff = UsernameInputStory.bind({});
 FilledTextfieldBoldOffItalicsOff.args = {
-    text: "BoldOffItalicsOff",
-    isBold: false,
-    isItalics: false,
+    state: {
+        type: "name",
+        textValue: "FilledTextfieldBoldOffItalicsOff",
+        isBold: false,
+        isItalics: false,
+        style: {},
+    },
     label: "Name",
 };
 
 const FilledTextfieldBoldOnItalicsOff = UsernameInputStory.bind({});
 FilledTextfieldBoldOnItalicsOff.args = {
-    text: "BoldOnItalicsOff",
-    isBold: true,
-    isItalics: false,
+    state: {
+        type: "name",
+        textValue: "FilledTextfieldBoldOnItalicsOff",
+        isBold: true,
+        isItalics: false,
+        style: {},
+    },
     label: "Name",
 };
 
 const FilledTextfieldBoldOffItalicsOn = UsernameInputStory.bind({});
 FilledTextfieldBoldOffItalicsOn.args = {
-    text: "BoldOffItalicsOn",
-    isBold: false,
-    isItalics: true,
+    state: {
+        type: "name",
+        textValue: "FilledTextfieldBoldOffItalicsOn",
+        isBold: false,
+        isItalics: true,
+        style: {},
+    },
     label: "Name",
 };
 
 const FilledTextfieldBoldOnItalicsOn = UsernameInputStory.bind({});
 FilledTextfieldBoldOnItalicsOn.args = {
-    text: "BoldOnItalicsOn",
-    isBold: true,
-    isItalics: true,
+    state: {
+        type: "name",
+        textValue: "BoldOnItalicsOn",
+        isBold: true,
+        isItalics: true,
+        style: {},
+    },
     label: "Name",
 };
 

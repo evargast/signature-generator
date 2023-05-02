@@ -7,21 +7,20 @@ import React, { FC } from "react";
 import { TextStyleOptions, TextStyleProps } from "./../TextStyleOptions";
 
 interface UsernameInputProps extends Omit<TextStyleProps, "onColorChange"> {
-    type: "name" | "email" | "title" | "company" | "phone" | "linkedin";
-    text?: string;
+    state: InputElementOptions;
     label: string;
     onInputChange: (updates: Partial<InputElementOptions>) => void;
 }
 
-const UsernameInput: FC<UsernameInputProps> = ({ type, onInputChange, text, isBold, isItalics, label }) => {
+const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) => {
     const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean }) => {
         // Since the provider needs a type to know where to apply the logic, we are adding it to the options object
-        const modifiedOptions = { ...options, type: type };
+        const modifiedOptions = { ...options, type: state.type };
         onInputChange(modifiedOptions);
     };
 
     const handleInputChange = (value: string) => {
-        onInputChange({ type, textValue: value });
+        onInputChange({ type: state.type, textValue: value });
     };
 
     const handleColorChange = (color: Color) => {
@@ -31,12 +30,12 @@ const UsernameInput: FC<UsernameInputProps> = ({ type, onInputChange, text, isBo
 
     return (
         <Flex gap="size-200" alignItems="end" direction="row">
-            <TextField label={label} onChange={handleInputChange} value={text} width="size-3600" />
+            <TextField label={label} onChange={handleInputChange} value={state.textValue} width="size-3600" />
             <TextStyleOptions
                 onChange={handleButtonChange}
                 onColorChange={handleColorChange}
-                isBold={isBold}
-                isItalics={isItalics}
+                isBold={state.isBold}
+                isItalics={state.isItalics}
             />
         </Flex>
     );
