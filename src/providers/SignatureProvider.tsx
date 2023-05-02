@@ -20,12 +20,16 @@ const getDefaultInputElementOptions = (type: InputElementOptions["type"]): Input
 const createSignatureProviderState = () => {
     const [imgUrl, setImgUrl] = useState<string>();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f709ff0 (feat: optimized code)
     const [name, setName] = useState<InputElementOptions>(getDefaultInputElementOptions("name"));
     const [email, setEmail] = useState<InputElementOptions>(getDefaultInputElementOptions("email"));
     const [company, setCompany] = useState<InputElementOptions>(getDefaultInputElementOptions("company"));
     const [title, setTitle] = useState<InputElementOptions>(getDefaultInputElementOptions("title"));
     const [linkedin, setLinkedin] = useState<InputElementOptions>(getDefaultInputElementOptions("linkedin"));
     const [phone, setPhone] = useState<InputElementOptions>(getDefaultInputElementOptions("phone"));
+<<<<<<< HEAD
     const [isDarkMode, setIsDarkMode] = useLocalStorageState(localStorageKeys.isDarkMode, false);
 
     const updateState = (updates: Partial<InputElementOptions>) => {
@@ -112,18 +116,26 @@ const createSignatureProviderState = () => {
         style: { fontWeight: "normal", fontStyle: "normal" },
     });
 
+=======
+>>>>>>> f709ff0 (feat: optimized code)
     const [isDarkMode, setIsDarkMode] = useLocalStorageState(localStorageKeys.isDarkMode, false);
 
     const updateState = (updates: Partial<InputElementOptions>) => {
-        if (updates.type === "name") {
-            const copyOfName = { ...name, ...updates };
-            copyOfName.style = {
-                fontWeight: copyOfName.isBold ? "bold" : "normal",
-                fontStyle: copyOfName.isItalics ? "italic" : "normal",
-            };
-            setName(copyOfName);
-        }
+        const updateInput = (
+            input: React.Dispatch<React.SetStateAction<InputElementOptions>>, //smartGPT uses React method SetStateAction, for more complex uses useReducer is required
+            updates: Partial<InputElementOptions>,
+        ) => {
+            input(inputOptions => {
+                const newOptions = { ...inputOptions, ...updates };
+                newOptions.style = {
+                    fontWeight: newOptions.isBold ? "bold" : "normal",
+                    fontStyle: newOptions.isItalics ? "italic" : "normal",
+                };
+                return newOptions;
+            });
+        };
 
+<<<<<<< HEAD
         if (updates.type === "email") {
             const copyOfEmail = { ...email, ...updates };
             copyOfEmail.style = {
@@ -164,6 +176,29 @@ const createSignatureProviderState = () => {
             };
             setPhone(copyOfPhone);
 >>>>>>> bc7dc1f (feat: implement all user input fields)
+=======
+        switch (updates.type) {
+            case "name":
+                updateInput(setName, updates);
+                break;
+            case "email":
+                updateInput(setEmail, updates);
+                break;
+            case "company":
+                updateInput(setCompany, updates);
+                break;
+            case "title":
+                updateInput(setTitle, updates);
+                break;
+            case "linkedin":
+                updateInput(setLinkedin, updates);
+                break;
+            case "phone":
+                updateInput(setPhone, updates);
+                break;
+            default:
+                break;
+>>>>>>> f709ff0 (feat: optimized code)
         }
     };
 
