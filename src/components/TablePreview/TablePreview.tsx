@@ -9,7 +9,7 @@ interface Props {}
  * This component *must* be pure html with inline styling, otherwise we will not be able to copy & paste it into an email.
  */
 const TablePreview: FC<Props> = ({}) => {
-    const { name, imgUrl } = useSignatureContext();
+    const { name, imgUrl, email, title, company, linkedin, phone } = useSignatureContext();
 
     const tableRef = useRef<HTMLTableElement>(null);
 
@@ -29,7 +29,7 @@ const TablePreview: FC<Props> = ({}) => {
     };
 
     return (
-        <Flex direction="column">
+        <Flex direction="column" height="100%" alignItems="center" marginBottom="size-1200">
             <style>{`table, td {border: 1px solid black;}`}</style>
             <table ref={tableRef}>
                 <tbody>
@@ -38,21 +38,21 @@ const TablePreview: FC<Props> = ({}) => {
                             <img src={imgUrl} height="60"></img>
                         </td>
                         <td style={name.style}>{name.textValue}</td>
-                        <td>Phone Number</td>
+                        <td style={phone.style}>{phone.textValue}</td>
                     </tr>
                     <tr>
-                        <td>Title</td>
-                        <td>Email</td>
+                        <td style={title.style}>{title.textValue}</td>
+                        <td style={email.style}>{email.textValue} </td>
                     </tr>
                     <tr>
-                        <td>Company</td>
-                        <td>LinkedIn</td>
+                        <td style={company.style}>{company.textValue}</td>
+                        <td style={linkedin.style}>{linkedin.textValue}</td>
                     </tr>
                 </tbody>
             </table>
 
             <ToastContainer />
-            <Button marginTop="size-150" variant="accent" width="100%" onPress={handleCopy}>
+            <Button marginTop="size-150" variant="accent" onPress={handleCopy}>
                 Copy
             </Button>
         </Flex>
