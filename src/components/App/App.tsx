@@ -28,8 +28,8 @@ const App: FC = () => {
                     <UsernameInput state={phone} label="Phone" onInputChange={updateState} />
                     <UsernameInput state={linkedin} label="Linkedin" onInputChange={updateState} />
                     <ImgInput />
-                    <TablePreview />
                 </Flex>
+                <TablePreview />
             </Layout>
         </ProviderV3>
     );

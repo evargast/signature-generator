@@ -29,7 +29,7 @@ const TablePreview: FC<Props> = ({}) => {
     };
 
     return (
-        <Flex direction="column">
+        <Flex direction="column" height="100%" alignItems="center" marginBottom="size-1200">
             <style>{`table, td {border: 1px solid black;}`}</style>
             <table ref={tableRef}>
                 <tbody>
@@ -52,7 +52,7 @@ const TablePreview: FC<Props> = ({}) => {
             </table>
 
             <ToastContainer />
-            <Button marginTop="size-150" variant="accent" width="100%" onPress={handleCopy}>
+            <Button marginTop="size-150" variant="accent" width="10%" onPress={handleCopy}>
                 Copy
             </Button>
         </Flex>
