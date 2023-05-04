@@ -52,7 +52,7 @@ const TablePreview: FC<Props> = ({}) => {
             </table>
 
             <ToastContainer />
-            <Button marginTop="size-150" variant="accent" width="10%" onPress={handleCopy}>
+            <Button marginTop="size-150" variant="accent" onPress={handleCopy}>
                 Copy
             </Button>
         </Flex>
