@@ -38,17 +38,17 @@ const TablePreview: FC<Props> = ({}) => {
                             <img src={imgUrl} height="60"></img>
                         </td>
                         <td style={name.style}>{name.textValue}</td>
-                        <td>&nbsp;</td>
+                        <td style={{ width: "16px" }}></td>
                         <td style={phone.style}>{phone.textValue}</td>
                     </tr>
                     <tr>
                         <td style={title.style}>{title.textValue}</td>
-                        <td>&nbsp;</td>
+                        <td style={{ width: "16px" }}></td>
                         <td style={email.style}>{email.textValue} </td>
                     </tr>
                     <tr>
                         <td style={company.style}>{company.textValue}</td>
-                        <td>&nbsp;</td>
+                        <td style={{ width: "16px" }}></td>
                         <td style={linkedin.style}>{linkedin.textValue}</td>
                     </tr>
                 </tbody>
