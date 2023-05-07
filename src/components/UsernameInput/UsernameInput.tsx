@@ -16,7 +16,7 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
     const emailRegex = new RegExp(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/);
 
     useEffect(() => {
-        if (state !== undefined) {
+        if (state !== undefined && state.variant === "email") {
             validateEmail(state.textValue);
         }
     }, [state]);
