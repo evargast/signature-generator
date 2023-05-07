@@ -28,9 +28,10 @@ const TablePreview: FC<Props> = ({}) => {
         ToastQueue.positive("Signature copied!", { timeout: 5000 });
     };
 
+    const spacerStyle = { width: "16px" };
+
     return (
         <Flex direction="column" height="100%" alignItems="center" marginBottom="size-1200">
-            <style>{`table, td {border: 0px solid black;}`}</style>
             <table ref={tableRef}>
                 <tbody>
                     <tr>
@@ -38,17 +39,17 @@ const TablePreview: FC<Props> = ({}) => {
                             <img src={imgUrl} height="60"></img>
                         </td>
                         <td style={name.style}>{name.textValue}</td>
-                        <td style={{ width: "16px" }}></td>
+                        <td style={spacerStyle}></td>
                         <td style={phone.style}>{phone.textValue}</td>
                     </tr>
                     <tr>
                         <td style={title.style}>{title.textValue}</td>
-                        <td style={{ width: "16px" }}></td>
+                        <td style={spacerStyle}></td>
                         <td style={email.style}>{email.textValue} </td>
                     </tr>
                     <tr>
                         <td style={company.style}>{company.textValue}</td>
-                        <td style={{ width: "16px" }}></td>
+                        <td style={spacerStyle}></td>
                         <td style={linkedin.style}>{linkedin.textValue}</td>
                     </tr>
                 </tbody>
