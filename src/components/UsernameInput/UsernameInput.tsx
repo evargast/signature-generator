@@ -1,6 +1,6 @@
 import { Flex, TextField } from "@adobe/react-spectrum";
 import { Color } from "@react-types/color";
-import { InputElementOptions, useSignatureContext } from "providers/SignatureProvider";
+import { InputElementOptions } from "providers/SignatureProvider";
 import React, { FC, useEffect, useState } from "react";
 
 import { TextStyleOptions, TextStyleProps } from "./../TextStyleOptions";
@@ -14,13 +14,12 @@ interface UsernameInputProps extends Omit<TextStyleProps, "onColorChange"> {
 const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) => {
     const [emailValidation, setEmailValidation] = useState<"valid" | "invalid">();
     const emailRegex = new RegExp(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/);
-    const { email } = useSignatureContext();
 
     useEffect(() => {
-        if (email !== undefined) {
-            validateEmail(email.textValue);
+        if (state !== undefined) {
+            validateEmail(state.textValue);
         }
-    }, [email]);
+    }, [state]);
 
     const validateEmail = (input: string) => {
         setEmailValidation(emailRegex.test(input) ? "valid" : "invalid");
