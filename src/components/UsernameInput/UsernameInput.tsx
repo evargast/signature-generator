@@ -15,12 +15,12 @@ interface UsernameInputProps extends Omit<TextStyleProps, "onColorChange"> {
 const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) => {
     const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean }) => {
         // Since the provider needs a type to know where to apply the logic, we are adding it to the options object
-        const modifiedOptions = { ...options, type: state.type };
+        const modifiedOptions = { ...options, type: state.variant };
         onInputChange(modifiedOptions);
     };
 
     const handleInputChange = (value: string) => {
-        onInputChange({ type: state.type, textValue: value });
+        onInputChange({ variant: state.variant, textValue: value });
     };
 
     const handleColorChange = (color: Color) => {

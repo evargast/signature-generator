@@ -2,15 +2,15 @@ import { localStorageKeys, useLocalStorageState } from "hooks/useLocalStorage";
 import React, { createContext, CSSProperties, FC, useContext, useState } from "react";
 
 interface InputElementOptions {
-    type: "name" | "email" | "title" | "phone" | "linkedin" | "company";
+    variant: "name" | "email" | "title" | "phone" | "linkedin" | "company";
     textValue: string;
     isBold: boolean;
     isItalics: boolean;
     style: CSSProperties;
 }
 
-const getDefaultInputElementOptions = (type: InputElementOptions["type"]): InputElementOptions => ({
-    type: type,
+const getDefaultInputElementOptions = (type: InputElementOptions["variant"]): InputElementOptions => ({
+    variant: type,
     textValue: "",
     isBold: false,
     isItalics: false,
@@ -42,7 +42,7 @@ const createSignatureProviderState = () => {
             });
         };
 
-        switch (updates.type) {
+        switch (updates.variant) {
             case "name":
                 updateInput(setName, updates);
                 break;
