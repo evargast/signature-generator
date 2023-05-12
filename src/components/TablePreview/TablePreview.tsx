@@ -1,4 +1,4 @@
-import { Button, Flex } from "@adobe/react-spectrum";
+import { Button, Flex, View } from "@adobe/react-spectrum";
 import { ToastContainer, ToastQueue } from "@react-spectrum/toast";
 import { useSignatureContext } from "providers/SignatureProvider";
 import React, { FC, useRef } from "react";
