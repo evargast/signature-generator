@@ -1,6 +1,5 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
@@ -9,7 +8,7 @@ module.exports = {
     target: "web",
     mode: "development",
     output: {
-        filename: "[name].[hash].bundle.js",
+        filename: "[name].[contenthash].bundle.js",
         path: path.resolve(__dirname, "dist"),
     },
     resolve: {
@@ -42,26 +41,10 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: "Spectrum App",
+            title: "Signature Generator",
             template: __dirname + "/public/index.html",
             inject: "body",
             filename: "index.html",
         }),
-        new MiniCssExtractPlugin({
-            filename: "[name].css",
-            chunkFilename: "[id].css",
-        }),
     ],
-    devServer: {
-        port: 1234,
-        hot: true,
-    },
-
-    performance: {
-        hints: false,
-    },
-    stats: {
-        modules: false,
-        warnings: false,
-    },
 };
