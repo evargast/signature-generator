@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import { Flex, View } from "@adobe/react-spectrum";
+import { Flex } from "@adobe/react-spectrum";
 import { ToastContainer } from "@react-spectrum/toast";
 import ImgInput from "components/ImgInput";
 import TablePreview from "components/TablePreview";
@@ -17,21 +16,18 @@ const App: FC = () => {
     return (
         <>
             <ToastContainer />
-            <Layout>
-                <Flex marginX="size-300" alignItems="start" direction="column" justifyContent="center" gap={"size-200"}>
-                    {profile ? <h3>Welcome {profile?.given_name}</h3> : <></>}
-                    <View borderWidth="thin" borderColor="dark" borderRadius="medium" padding="size-250">
-                        <UsernameInput state={name} label="Name" onInputChange={updateState} />
-                        <UsernameInput state={title} label="Title" onInputChange={updateState} />
-                        <UsernameInput state={company} label="Company" onInputChange={updateState} />
-                        <UsernameInput state={email} label="Email" onInputChange={updateState} />
-                        <UsernameInput state={phone} label="Phone" onInputChange={updateState} />
-                        <UsernameInput state={linkedin} label="Linkedin" onInputChange={updateState} />
-                        <ImgInput />
-                    </View>
-                </Flex>
-                <TablePreview />
-            </Layout>
+
+            <Flex marginX="size-300" alignItems="start" direction="column" justifyContent="center" gap={"size-200"}>
+                {profile ? <h3>Welcome {profile?.given_name}</h3> : <></>}
+                <UsernameInput state={name} label="Name" onInputChange={updateState} />
+                <UsernameInput state={title} label="Title" onInputChange={updateState} />
+                <UsernameInput state={company} label="Company" onInputChange={updateState} />
+                <UsernameInput state={email} label="Email" onInputChange={updateState} />
+                <UsernameInput state={phone} label="Phone" onInputChange={updateState} />
+                <UsernameInput state={linkedin} label="Linkedin" onInputChange={updateState} />
+                <ImgInput />
+            </Flex>
+            <TablePreview />
         </>
     );
 };
