@@ -66,7 +66,6 @@ const TablePreview: FC<Props> = ({}) => {
                     </table>
                 </View>
             ) : null}
-
             <ToastContainer />
             <Button marginTop="size-150" variant="accent" onPress={handleCopy}>
                 Copy
