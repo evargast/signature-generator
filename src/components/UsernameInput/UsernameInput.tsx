@@ -15,12 +15,6 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
     const [emailValidation, setEmailValidation] = useState<"valid" | "invalid">();
     const emailRegex = new RegExp(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/);
 
-    useEffect(() => {
-        if (state !== undefined && state.variant === "email") {
-            validateEmail(state.textValue);
-        }
-    }, [state.textValue]);
-
     const validateEmail = (input: string) => {
         setEmailValidation(emailRegex.test(input) ? "valid" : "invalid");
     };
@@ -33,6 +27,9 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
 
     const handleInputChange = (value: string) => {
         onInputChange({ variant: state.variant, textValue: value });
+        if (state.variant === "email") {
+            validateEmail(value);
+        }
     };
 
     const handleColorChange = (color: Color) => {
