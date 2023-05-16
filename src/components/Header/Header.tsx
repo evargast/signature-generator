@@ -18,7 +18,7 @@ const RouteOptions: FC = () => {
         navigate(key as string);
     };
 
-    const capitalizeFirstLetter = (string: string) => {
+    const getMenuButtonLabel = (string: string) => {
         if (string.length === 0) {
             return <Home />;
         } else {
@@ -28,7 +28,7 @@ const RouteOptions: FC = () => {
 
     return (
         <MenuTrigger>
-            <ActionButton isQuiet>{capitalizeFirstLetter(selectedPath)}</ActionButton>
+            <ActionButton isQuiet>{getMenuButtonLabel(selectedPath)}</ActionButton>
             <Menu selectionMode="single" selectedKeys={[selectedPath || "/"]} onAction={setSelected}>
                 <Item key="/">Home</Item>
                 <Item key="luigi">Luigi</Item>
