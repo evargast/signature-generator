@@ -39,38 +39,42 @@ const TablePreview: FC<Props> = ({}) => {
     const spacerStyle = { width: "16px" };
 
     return (
-        <Flex direction="column" height="100%" alignItems="center" marginBottom="size-1200">
+        <>
             {hasData ? (
-                <View borderWidth="thin" borderColor="dark" borderRadius="medium" padding="size-250">
-                    <table ref={tableRef}>
-                        <tbody>
-                            <tr>
-                                <td rowSpan={3} align="center">
-                                    <img src={imgUrl} height="60"></img>
-                                </td>
-                                <td style={name.style}>{name.textValue}</td>
-                                <td style={spacerStyle}></td>
-                                <td style={phone.style}>{phone.textValue}</td>
-                            </tr>
-                            <tr>
-                                <td style={title.style}>{title.textValue}</td>
-                                <td style={spacerStyle}></td>
-                                <td style={email.style}>{email.textValue} </td>
-                            </tr>
-                            <tr>
-                                <td style={company.style}>{company.textValue}</td>
-                                <td style={spacerStyle}></td>
-                                <td style={linkedin.style}>{linkedin.textValue}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </View>
-            ) : null}
+                <Flex direction="column" height="100%" alignItems="center" marginBottom="size-1200">
+                    <View borderWidth="thin" borderColor="dark" borderRadius="medium" padding="size-250">
+                        <table ref={tableRef}>
+                            <tbody>
+                                <tr>
+                                    <td rowSpan={3} align="center">
+                                        <img src={imgUrl} height="60"></img>
+                                    </td>
+                                    <td style={name.style}>{name.textValue}</td>
+                                    <td style={spacerStyle}></td>
+                                    <td style={phone.style}>{phone.textValue}</td>
+                                </tr>
+                                <tr>
+                                    <td style={title.style}>{title.textValue}</td>
+                                    <td style={spacerStyle}></td>
+                                    <td style={email.style}>{email.textValue} </td>
+                                </tr>
+                                <tr>
+                                    <td style={company.style}>{company.textValue}</td>
+                                    <td style={spacerStyle}></td>
+                                    <td style={linkedin.style}>{linkedin.textValue}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <Button marginTop="size-150" variant="accent" onPress={handleCopy} width="100%">
+                            Copy
+                        </Button>
+                    </View>
+                </Flex>
+            ) : (
+                <></>
+            )}
             <ToastContainer />
-            <Button marginTop="size-150" variant="accent" onPress={handleCopy}>
-                Copy
-            </Button>
-        </Flex>
+        </>
     );
 };
 export default TablePreview;
