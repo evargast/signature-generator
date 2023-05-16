@@ -1,7 +1,7 @@
 import { Flex, TextField } from "@adobe/react-spectrum";
 import { Color } from "@react-types/color";
 import { InputElementOptions } from "providers/SignatureProvider";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 
 import { TextStyleOptions, TextStyleProps } from "./../TextStyleOptions";
 
