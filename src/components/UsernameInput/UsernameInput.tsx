@@ -19,7 +19,7 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
         if (state !== undefined && state.variant === "email") {
             validateEmail(state.textValue);
         }
-    }, [state]);
+    }, [state.textValue]);
 
     const validateEmail = (input: string) => {
         setEmailValidation(emailRegex.test(input) ? "valid" : "invalid");
