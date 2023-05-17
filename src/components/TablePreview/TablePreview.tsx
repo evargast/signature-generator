@@ -1,5 +1,5 @@
 import { Button, Flex, View } from "@adobe/react-spectrum";
-import { ToastContainer, ToastQueue } from "@react-spectrum/toast";
+import { ToastQueue } from "@react-spectrum/toast";
 import { useSignatureContext } from "providers/SignatureProvider";
 import React, { FC, useRef } from "react";
 
@@ -73,7 +73,6 @@ const TablePreview: FC<Props> = ({}) => {
             ) : (
                 <></>
             )}
-            <ToastContainer />
         </>
     );
 };
