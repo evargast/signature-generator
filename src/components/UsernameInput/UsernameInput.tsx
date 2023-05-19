@@ -28,7 +28,7 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
     const handleInputChange = (value: string) => {
         onInputChange({ variant: state.variant, textValue: value });
         if (state.variant === "email") {
-            validateEmail(value);
+            value === "" ? setEmailValidation(undefined) : validateEmail(value);
         }
     };
 
