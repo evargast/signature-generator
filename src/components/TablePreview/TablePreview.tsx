@@ -9,7 +9,7 @@ interface Props {}
  * This component *must* be pure html with inline styling, otherwise we will not be able to copy & paste it into an email.
  */
 const TablePreview: FC<Props> = ({}) => {
-    const { name, imgUrl, email, title, company, linkedin, phone } = useSignatureContext();
+    const { name, imgUrl, email, title, company, linkedin, phone, valiEmail } = useSignatureContext();
 
     const tableRef = useRef<HTMLTableElement>(null);
 
@@ -56,7 +56,7 @@ const TablePreview: FC<Props> = ({}) => {
                                 <tr>
                                     <td style={title.style}>{title.textValue}</td>
                                     <td style={spacerStyle}></td>
-                                    <td style={email.style}>{email.textValue} </td>
+                                    <td style={email.style}>{valiEmail ? email.textValue : <></>} </td>
                                 </tr>
                                 <tr>
                                     <td style={company.style}>{company.textValue}</td>
