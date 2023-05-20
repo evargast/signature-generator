@@ -16,8 +16,10 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
     const emailRegex = new RegExp(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/);
 
     const validateEmail = (input: string) => {
-        setEmailValidation(emailRegex.test(input) ? "valid" : "invalid");
-        //console.log(emailValidation); // testing but output is behind one cycle.
+        const validation = emailRegex.test(input) ? "valid" : "invalid";
+        setEmailValidation(validation);
+
+        return validation; // returning it so we can have access to it after calling the function
     };
 
     const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean }) => {
@@ -31,16 +33,16 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
             if (value === "") {
                 setEmailValidation(undefined);
             } else {
-                validateEmail(value);
-                const isValid: string | undefined = emailValidation; //setting value in check constant.
+                const isValid = validateEmail(value);
                 if (isValid === "valid") {
                     onInputChange({ variant: state.variant, textValue: value });
                 } else {
                     onInputChange({ variant: state.variant, textValue: undefined });
                 }
             }
+        } else {
+            onInputChange({ variant: state.variant, textValue: value });
         }
-        // onInputChange({ variant: state.variant, textValue: value });
     };
 
     const handleColorChange = (color: Color) => {
