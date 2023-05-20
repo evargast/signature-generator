@@ -15,11 +15,6 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
     const [emailValidation, setEmailValidation] = useState<"valid" | "invalid">();
     const { setValiEmail } = useSignatureContext();
     const emailRegex = new RegExp(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/);
-    // const validateEmail = (input: string) => {
-    //     setEmailValidation(emailRegex.test(input) ? "valid" : "invalid");
-    //     // eslint-disable-next-line no-console
-    //     console.log(emailValidation);
-    // };
 
     const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean }) => {
         // Since the provider needs a variant to know where to apply the logic, we are adding it to the options object
@@ -33,23 +28,13 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
                 setEmailValidation(undefined);
             } else {
                 setEmailValidation(emailRegex.test(state.textValue) ? "valid" : "invalid");
-                setValiEmail(emailValidation); // Here we use the current value of emailValidation
+                setValiEmail(emailValidation);
             }
         }
     }, [emailValidation, state.textValue]);
 
     const handleInputChange = (value: string) => {
         onInputChange({ variant: state.variant, textValue: value });
-
-        // if (state.variant === "email") {
-        //     if (value === "") {
-        //         setEmailValidation(undefined);
-        //         setValiEmail(undefined);
-        //     } else {
-        //         setEmailValidation(emailRegex.test(value) ? "valid" : "invalid");
-        //         setValiEmail(emailValidation); // Here we use the current value of emailValidation
-        //     }
-        // }
     };
 
     const handleColorChange = (color: Color) => {
