@@ -25,7 +25,6 @@ const createSignatureProviderState = () => {
     const [title, setTitle] = useState<InputElementOptions>(getDefaultInputElementOptions("title"));
     const [linkedin, setLinkedin] = useState<InputElementOptions>(getDefaultInputElementOptions("linkedin"));
     const [phone, setPhone] = useState<InputElementOptions>(getDefaultInputElementOptions("phone"));
-    const [valiEmail, setValiEmail] = useState<"valid" | "invalid">();
     const [isDarkMode, setIsDarkMode] = useLocalStorageState(localStorageKeys.isDarkMode, false);
 
     const updateState = (updates: Partial<InputElementOptions>) => {
@@ -79,8 +78,6 @@ const createSignatureProviderState = () => {
         updateState,
         isDarkMode,
         setIsDarkMode,
-        valiEmail,
-        setValiEmail,
     };
 };
 

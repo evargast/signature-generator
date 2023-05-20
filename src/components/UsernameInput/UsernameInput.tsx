@@ -1,6 +1,6 @@
 import { Flex, TextField } from "@adobe/react-spectrum";
 import { Color } from "@react-types/color";
-import { InputElementOptions, useSignatureContext } from "providers/SignatureProvider";
+import { InputElementOptions } from "providers/SignatureProvider";
 import React, { FC, useState } from "react";
 
 import { TextStyleOptions, TextStyleProps } from "./../TextStyleOptions";
@@ -13,8 +13,12 @@ interface UsernameInputProps extends Omit<TextStyleProps, "onColorChange"> {
 
 const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) => {
     const [emailValidation, setEmailValidation] = useState<"valid" | "invalid">();
-    const { setValiEmail } = useSignatureContext();
     const emailRegex = new RegExp(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/);
+
+    const validateEmail = (input: string) => {
+        setEmailValidation(emailRegex.test(input) ? "valid" : "invalid");
+        //console.log(emailValidation); // testing but output is behind one cycle.
+    };
 
     const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean }) => {
         // Since the provider needs a variant to know where to apply the logic, we are adding it to the options object
@@ -22,19 +26,21 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
         onInputChange(modifiedOptions);
     };
 
-    React.useEffect(() => {
+    const handleInputChange = (value: string) => {
         if (state.variant === "email") {
-            if (state.textValue === "") {
+            if (value === "") {
                 setEmailValidation(undefined);
             } else {
-                setEmailValidation(emailRegex.test(state.textValue) ? "valid" : "invalid");
-                setValiEmail(emailValidation);
+                validateEmail(value);
+                const isValid: string | undefined = emailValidation; //setting value in check constant.
+                if (isValid === "valid") {
+                    onInputChange({ variant: state.variant, textValue: value });
+                } else {
+                    onInputChange({ variant: state.variant, textValue: undefined });
+                }
             }
         }
-    }, [emailValidation, state.textValue]);
-
-    const handleInputChange = (value: string) => {
-        onInputChange({ variant: state.variant, textValue: value });
+        // onInputChange({ variant: state.variant, textValue: value });
     };
 
     const handleColorChange = (color: Color) => {
