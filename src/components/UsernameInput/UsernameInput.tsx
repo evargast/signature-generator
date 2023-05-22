@@ -25,6 +25,7 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
     const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean }) => {
         // Since the provider needs a variant to know where to apply the logic, we are adding it to the options object
         const modifiedOptions = { ...options, variant: state.variant };
+        // console.log(modifiedOptions); //no output of coot but yes to isBold isItalics and variant.
         onInputChange(modifiedOptions);
     };
 
@@ -45,9 +46,17 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
         }
     };
 
-    const handleColorChange = (color: Color) => {
-        // eslint-disable-next-line no-console
-        console.log(color.toFormat("hex"));
+    const updateProviderColorState = (value: Color) => {
+        const strColor = value.toString("hex");
+        setColor(strColor);
+        return strColor;
+    };
+
+    const handleColorChange = (colorValue: Color) => {
+        const strColorValue = updateProviderColorState(colorValue);
+        console.log(strColorValue); //working setting value on state. missing wire up to
+
+        console.log(colorValue.toFormat("hex"));
     };
 
     return (

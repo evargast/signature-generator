@@ -7,6 +7,7 @@ interface InputElementOptions {
     isBold: boolean;
     isItalics: boolean;
     style: CSSProperties;
+    color?: string;
 }
 
 const getDefaultInputElementOptions = (type: InputElementOptions["variant"]): InputElementOptions => ({
@@ -15,6 +16,7 @@ const getDefaultInputElementOptions = (type: InputElementOptions["variant"]): In
     isBold: false,
     isItalics: false,
     style: { fontWeight: "normal", fontStyle: "normal" },
+    color: "",
 });
 
 const createSignatureProviderState = () => {
@@ -26,6 +28,7 @@ const createSignatureProviderState = () => {
     const [linkedin, setLinkedin] = useState<InputElementOptions>(getDefaultInputElementOptions("linkedin"));
     const [phone, setPhone] = useState<InputElementOptions>(getDefaultInputElementOptions("phone"));
     const [isDarkMode, setIsDarkMode] = useLocalStorageState(localStorageKeys.isDarkMode, false);
+    const [color, setColor] = useState<string>();
 
     const updateState = (updates: Partial<InputElementOptions>) => {
         const updateInput = (
@@ -37,6 +40,7 @@ const createSignatureProviderState = () => {
                 newOptions.style = {
                     fontWeight: newOptions.isBold ? "bold" : "normal",
                     fontStyle: newOptions.isItalics ? "italic" : "normal",
+                    color: newOptions.color,
                 };
                 return newOptions;
             });
@@ -78,6 +82,8 @@ const createSignatureProviderState = () => {
         updateState,
         isDarkMode,
         setIsDarkMode,
+        color,
+        setColor,
     };
 };
 
