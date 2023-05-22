@@ -30,7 +30,16 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
 
     return (
         <Flex gap="size-200" alignItems="end" direction="row">
-            <TextField label={label} onChange={handleInputChange} value={state.textValue} width="size-3600" />
+            <TextField
+                label={label}
+                onChange={handleInputChange}
+                value={state.textValue}
+                width="size-3600"
+                // initial implementation needs working, TODO
+                name={state.variant}
+                type={state.variant}
+                autoComplete="on"
+            />
             <TextStyleOptions
                 onChange={handleButtonChange}
                 onColorChange={handleColorChange}
