@@ -40,7 +40,7 @@ const createSignatureProviderState = () => {
                 newOptions.style = {
                     fontWeight: newOptions.isBold ? "bold" : "normal",
                     fontStyle: newOptions.isItalics ? "italic" : "normal",
-                    color: newOptions.color,
+                    color: (newOptions.color = color),
                 };
                 return newOptions;
             });
@@ -82,7 +82,6 @@ const createSignatureProviderState = () => {
         updateState,
         isDarkMode,
         setIsDarkMode,
-        color,
         setColor,
     };
 };
