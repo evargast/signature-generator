@@ -19,7 +19,8 @@ const TablePreview: FC<Props> = ({}) => {
         title.textValue ||
         email.textValue ||
         company.textValue ||
-        linkedin.textValue;
+        linkedin.textValue ||
+        imgUrl;
 
     const handleCopy = () => {
         if (tableRef.current) {
