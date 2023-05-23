@@ -28,6 +28,23 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
         console.log(color.toFormat("hex"));
     };
 
+    const handleAutoComplete = (variant: string) => {
+        switch (variant) {
+            case "name":
+                return "name";
+            case "email":
+                return "email";
+            case "title":
+                return "organization-title";
+            case "phone":
+                return "tel";
+            case "linkedin":
+                return "url";
+            default:
+                return "";
+        }
+    };
+
     return (
         <Flex gap="size-200" alignItems="end" direction="row">
             <TextField
@@ -36,9 +53,9 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
                 value={state.textValue}
                 width="size-3600"
                 // initial implementation needs working, TODO
-                name={state.variant}
-                type={state.variant}
-                autoComplete="on"
+                name={handleAutoComplete(state.variant)}
+                type={handleAutoComplete(state.variant)}
+                autoComplete={handleAutoComplete(state.variant)}
             />
             <TextStyleOptions
                 onChange={handleButtonChange}
