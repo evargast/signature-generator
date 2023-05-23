@@ -33,6 +33,9 @@ const ImgInput: FC<Props> = () => {
                 onChange={onChangeHandler}
                 description="Link must be of a png or jpg image"
                 width="size-3600"
+                name="photo"
+                type="photo"
+                autoComplete="photo"
             />
             {imgUrl !== undefined && urlValidation === "valid" ? <img height="50px" src={imgUrl} /> : <></>}
         </Flex>
