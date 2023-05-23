@@ -51,17 +51,23 @@ const TablePreview: FC<Props> = ({}) => {
                                     </td>
                                     <td style={name.style}>{name.textValue}</td>
                                     <td style={spacerStyle}></td>
-                                    <td style={phone.style}>{phone.textValue}</td>
+                                    <td style={phone.style}>
+                                        <a href="tel:${phone.textValue}"> {phone.textValue}</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td style={title.style}>{title.textValue}</td>
                                     <td style={spacerStyle}></td>
-                                    <td style={email.style}>{email.textValue} </td>
+                                    <td style={email.style}>
+                                        <a href="mailto:${email.textValue}">{email.textValue}</a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td style={company.style}>{company.textValue}</td>
                                     <td style={spacerStyle}></td>
-                                    <td style={linkedin.style}>{linkedin.textValue}</td>
+                                    <td style={linkedin.style}>
+                                        <a href={linkedin.textValue}> {linkedin.textValue}</a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
