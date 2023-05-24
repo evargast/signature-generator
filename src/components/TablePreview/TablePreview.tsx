@@ -56,9 +56,7 @@ const TablePreview: FC<Props> = ({}) => {
                                 <tr>
                                     <td style={title.style}>{title.textValue}</td>
                                     <td style={spacerStyle}></td>
-                                    <td style={email.style}>
-                                        {email.textValue === undefined ? <></> : email.textValue}{" "}
-                                    </td>
+                                    <td style={email.style}>{email.textValue}</td>
                                 </tr>
                                 <tr>
                                     <td style={company.style}>{company.textValue}</td>
