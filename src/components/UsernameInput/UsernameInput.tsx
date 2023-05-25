@@ -28,9 +28,34 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
         console.log(color.toFormat("hex"));
     };
 
+    const handleAutoComplete = (variant: string) => {
+        switch (variant) {
+            case "name":
+                return { name: "name", type: "name", autoComplete: "name" };
+            case "title":
+                return { name: "organization-title", type: "organization-title", autoComplete: "organization-title" };
+            case "company":
+                return { name: "organization", type: "organization", autoComplete: "organization" };
+            case "email":
+                return { name: "email", type: "email", autoComplete: "email" };
+            case "phone":
+                return { name: "tel", type: "tel", autoComplete: "tel" };
+            case "linkedin":
+                return { name: "url", type: "url", autoComplete: "url" };
+            default:
+                return {};
+        }
+    };
+
     return (
         <Flex gap="size-200" alignItems="end" direction="row">
-            <TextField label={label} onChange={handleInputChange} value={state.textValue} width="size-3600" />
+            <TextField
+                label={label}
+                onChange={handleInputChange}
+                value={state.textValue}
+                width="size-3600"
+                {...handleAutoComplete(state.variant)}
+            />
             <TextStyleOptions
                 onChange={handleButtonChange}
                 onColorChange={handleColorChange}
