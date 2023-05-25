@@ -31,17 +31,19 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
     const handleAutoComplete = (variant: string) => {
         switch (variant) {
             case "name":
-                return "name";
-            case "email":
-                return "email";
+                return { name: "name", type: "name", autoComplete: "name" };
             case "title":
-                return "organization-title";
+                return { name: "organization-title", type: "organization-title", autoComplete: "organization-title" };
+            case "company":
+                return { name: "organization", type: "organization", autoComplete: "organization" };
+            case "email":
+                return { name: "email", type: "email", autoComplete: "email" };
             case "phone":
-                return "tel";
+                return { name: "tel", type: "tel", autoComplete: "tel" };
             case "linkedin":
-                return "url";
+                return { name: "url", type: "url", autoComplete: "url" };
             default:
-                return "";
+                return {};
         }
     };
 
@@ -52,10 +54,7 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
                 onChange={handleInputChange}
                 value={state.textValue}
                 width="size-3600"
-                // initial implementation needs working, TODO
-                name={handleAutoComplete(state.variant)}
-                type={handleAutoComplete(state.variant)}
-                autoComplete={handleAutoComplete(state.variant)}
+                {...handleAutoComplete(state.variant)}
             />
             <TextStyleOptions
                 onChange={handleButtonChange}
