@@ -1,3 +1,4 @@
+import { Color, parseColor } from "@react-stately/color";
 import { localStorageKeys, useLocalStorageState } from "hooks/useLocalStorage";
 import React, { createContext, CSSProperties, FC, useContext, useState } from "react";
 
@@ -7,7 +8,7 @@ interface InputElementOptions {
     isBold: boolean;
     isItalics: boolean;
     style: CSSProperties;
-    color?: string;
+    color?: Color;
 }
 
 const getDefaultInputElementOptions = (type: InputElementOptions["variant"]): InputElementOptions => ({
@@ -16,7 +17,7 @@ const getDefaultInputElementOptions = (type: InputElementOptions["variant"]): In
     isBold: false,
     isItalics: false,
     style: { fontWeight: "normal", fontStyle: "normal" },
-    color: "",
+    color: parseColor("#000000"),
 });
 
 const createSignatureProviderState = () => {
@@ -28,7 +29,6 @@ const createSignatureProviderState = () => {
     const [linkedin, setLinkedin] = useState<InputElementOptions>(getDefaultInputElementOptions("linkedin"));
     const [phone, setPhone] = useState<InputElementOptions>(getDefaultInputElementOptions("phone"));
     const [isDarkMode, setIsDarkMode] = useLocalStorageState(localStorageKeys.isDarkMode, false);
-    const [color, setColor] = useState<string>();
 
     const updateState = (updates: Partial<InputElementOptions>) => {
         const updateInput = (
@@ -40,7 +40,7 @@ const createSignatureProviderState = () => {
                 newOptions.style = {
                     fontWeight: newOptions.isBold ? "bold" : "normal",
                     fontStyle: newOptions.isItalics ? "italic" : "normal",
-                    color: (newOptions.color = color),
+                    color: newOptions.color ? newOptions.color.toString("hex") : "black",
                 };
                 return newOptions;
             });
@@ -82,7 +82,6 @@ const createSignatureProviderState = () => {
         updateState,
         isDarkMode,
         setIsDarkMode,
-        setColor,
     };
 };
 
