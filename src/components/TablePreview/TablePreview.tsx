@@ -67,7 +67,7 @@ const TablePreview: FC<Props> = ({}) => {
                                     <td style={company.style}>{company.textValue}</td>
                                     <td style={spacerStyle}></td>
                                     <td style={linkedin.style}>
-                                        <a href={linkedin.textValue}>LinkedIn</a>
+                                        <a href={linkedin.textValue}>{linkedin.textValue ? "LinkedIn" : <></>}</a>
                                     </td>
                                 </tr>
                             </tbody>
