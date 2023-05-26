@@ -22,9 +22,9 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
         return validation; // returning it so we can have access to it after calling the function
     };
 
-    const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean }) => {
-        // Since the provider needs a variant to know where to apply the logic, we are adding it to the options object
-        const modifiedOptions = { ...options, variant: state.variant };
+    const handleButtonChange = (options: { isBold?: boolean; isItalics?: boolean; color?: Color }) => {
+        const modifiedOptions = { ...options, variant: state.variant, color: state.color };
+        // console.log(modifiedOptions); //no output of coot but yes to isBold isItalics and variant.
         onInputChange(modifiedOptions);
     };
 
@@ -45,9 +45,8 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
         }
     };
 
-    const handleColorChange = (color: Color) => {
-        // eslint-disable-next-line no-console
-        console.log(color.toFormat("hex"));
+    const handleColorChange = (colorValue: Color) => {
+        onInputChange({ variant: state.variant, color: colorValue });
     };
 
     return (

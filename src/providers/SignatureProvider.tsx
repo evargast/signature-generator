@@ -1,3 +1,4 @@
+import { Color, parseColor } from "@react-stately/color";
 import { localStorageKeys, useLocalStorageState } from "hooks/useLocalStorage";
 import React, { createContext, CSSProperties, FC, useContext, useState } from "react";
 
@@ -7,6 +8,7 @@ interface InputElementOptions {
     isBold: boolean;
     isItalics: boolean;
     style: CSSProperties;
+    color?: Color;
 }
 
 const getDefaultInputElementOptions = (type: InputElementOptions["variant"]): InputElementOptions => ({
@@ -15,6 +17,7 @@ const getDefaultInputElementOptions = (type: InputElementOptions["variant"]): In
     isBold: false,
     isItalics: false,
     style: { fontWeight: "normal", fontStyle: "normal" },
+    color: parseColor("#000000"),
 });
 
 const createSignatureProviderState = () => {
@@ -37,6 +40,7 @@ const createSignatureProviderState = () => {
                 newOptions.style = {
                     fontWeight: newOptions.isBold ? "bold" : "normal",
                     fontStyle: newOptions.isItalics ? "italic" : "normal",
+                    color: newOptions.color ? newOptions.color.toString("hex") : "black",
                 };
                 return newOptions;
             });
