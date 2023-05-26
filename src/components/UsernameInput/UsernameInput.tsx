@@ -29,23 +29,54 @@ const UsernameInput: FC<UsernameInputProps> = ({ state, onInputChange, label }) 
     };
 
     const handleAutoComplete = (variant: string) => {
+        let autocompleteVariant: string = "";
         switch (variant) {
             case "name":
-                return { name: "name", type: "name", autoComplete: "name" };
+                autocompleteVariant = "name";
+                break;
             case "title":
-                return { name: "organization-title", type: "organization-title", autoComplete: "organization-title" };
+                autocompleteVariant = "organization-title";
+                break;
             case "company":
-                return { name: "organization", type: "organization", autoComplete: "organization" };
+                autocompleteVariant = "organization";
+                break;
             case "email":
-                return { name: "email", type: "email", autoComplete: "email" };
+                autocompleteVariant = "email";
+                break;
             case "phone":
-                return { name: "tel", type: "tel", autoComplete: "tel" };
+                autocompleteVariant = "tel";
+                break;
             case "linkedin":
-                return { name: "url", type: "url", autoComplete: "url" };
+                autocompleteVariant = "url";
+                break;
             default:
-                return {};
+                break;
         }
+        return {
+            name: autocompleteVariant,
+            type: autocompleteVariant,
+            autoComplete: autocompleteVariant,
+        };
     };
+
+    // const handleAutoComplete = (variant: string) => {
+    //     switch (variant) {
+    //         case "name":
+    //             return { name: "name", type: "name", autoComplete: "name" };
+    //         case "title":
+    //             return { name: "organization-title", type: "organization-title", autoComplete: "organization-title" };
+    //         case "company":
+    //             return { name: "organization", type: "organization", autoComplete: "organization" };
+    //         case "email":
+    //             return { name: "email", type: "email", autoComplete: "email" };
+    //         case "phone":
+    //             return { name: "tel", type: "tel", autoComplete: "tel" };
+    //         case "linkedin":
+    //             return { name: "url", type: "url", autoComplete: "url" };
+    //         default:
+    //             return {};
+    //     }
+    // };
 
     return (
         <Flex gap="size-200" alignItems="end" direction="row">
