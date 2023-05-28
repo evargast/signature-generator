@@ -41,7 +41,7 @@ const TablePreview: FC<Props> = ({}) => {
     return (
         <>
             {hasData ? (
-                <Flex direction="column" height="100%" alignItems="center" marginBottom="size-1200">
+                <Flex direction="column" position="fixed" bottom="size-1200" alignSelf="center">
                     <View borderWidth="thin" borderColor="dark" borderRadius="medium" padding="size-250">
                         <table ref={tableRef}>
                             <tbody>
